@@ -5,6 +5,7 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathrsfs}
 
 \geometry{
     paperheight=9.75in,
@@ -101,6 +102,31 @@ Accordingly we introduce the following definitions (following in part the nomenc
 2.14 \emph{Lexical order of well-formed expressions}. The set of all well formed expressions is well ordered in lexical order by the rule that $A$ precedes $B$ just in case that $A$ is shorter than $B$ or, if $A$ and $B$ are of equal length, then $A$ has the alphabetically earlier symbol in the first symbol position at which $A$ and $B$ have distinct symbols.
 
 In writing well-formed expressions for illustrative purposes, we follow the more readable plan of enclosing the $n$ terms following a function symbol or predicate symbol of degree $n$ by a pair of parentheses, separating the terms, if there are two or more, by commas. We can then unambiguously omit all superscripts from symbols. In writing finite sets, we follow the usual convention of
+
+\newpage
+\noindent enclosing the members in a pair of braces and of separating the members by commas, with the understanding that the order of writing the members in immaterial.
+
+2.15 \emph{Herbrand universes}. With any set $S$ of clauses there is associated a set of ground terms called the Herbrand universe of $S$, as follows: let $F$ be the set of all function symbols which occur in $S$. If $F$ contains any function symbols of degree 0, the functional vocabulary of $S$ is $F$; otherwise it is the set ${a}\union F$. The Herbrand universe of $S$ is then the set of all ground terms in which there occur only symbols in the functional vocabulary of $S$.
+
+2.16 \emph{Saturation}. If $S$ is any set of clauses and $P$ is any set of terms, then by $P(S)$ we denote the saturation of $S$ over $P$, which is the set of all ground clauses obtainable from members of $S$ by replacing variables with members of P-occurrences of the same variable in any one clause being replaced by occurrences of the same term.
+
+2.17 \emph{Models}. A set of ground literals which does not include a complementary pair is called a model. If $M$ is a model and $S$ is a set of ground clauses, then $M$ is a model of $S$ if, for all $C$ in $S$, $C$ contains a member of $M$. Then, in general, if $S$ is any set of clauses, and $H$ is the Herbrand universe of $S$, we say that $M$ is a model of $S$ just in case that $M$ is a model of $H(S)$.
+
+2.18 \emph{Satisfiability}. A set $S$ of clauses is satisfiable if there is a model of $S$; otherwise $S$ is unsatisfiable.
+
+From the definition of satisfiability, it is clear that any set of clauses which contain $\square$ is unsatisfiable, and that the empty set of clauses is satisfiable. These two circumstances will appear quite natural as the development of our system proceeds. It is also clear that according to our semantic definitions each nonempty clause is interpreted, as explained in the informal remarks at the beginning of this section, as the universal closure of the disjunction of the literal which it contains.
+
+2.19 \emph{Ground resolvents}. If $C$ and $D$ are two ground clauses, and $L\subseteq C,M\subseteq D$ are two singletons (unit sets) whose respective members form a complementary pair, then the ground clause: $(C - L)\cup (D - M)$ is called a ground resolvent of $C$ and $D$.
+
+Evidently any model of ${C,D}$ is also a model of ${C,D,R}$, where $R$ is a ground resolvent of $C$ and $D$. Not all pairs of ground clauses have ground resolvents, and some have more than one; but in no case, as is clear from the definitions, can two ground clauses have more than a finite number of ground resolvents.
+
+2.20 \emph{Ground resolution}. If $S$ is any set of ground clauses, then the ground resolution of $S$, denoted by $\mathscr{R}(S)$, is the set of ground clauses consisting of the members of $S$ together with all ground resolvents of all pairs of members of $S$.
+
+2.21 \emph{N-th ground resolution}. If $S$ is any set of ground clauses, then the $n$th ground resolution of $S$, denoted by $\mathscr{R}^n(S)$, is defined for each $n\geqq 0$ as follows: $\mathscr{R}^0(S) = S$; and for $n\geqq 0$, $\mathscr{R}^{n+1} = \mathscr{R}(\mathscr{R}^n(S))$.
+
+This completes the first batch of definitions. The next sections are concerned with the various forms that Herbrand's Theorem takes on in our system. To each such form, there is a type of refutation procedure which that form sug-
+
+\newpage
 
 \newpage
 
