@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \geometry{
     paperheight=9.75in,
@@ -54,13 +55,53 @@ In Section 2 the syntax and semantics of the particular formalism which is used 
 
 \section{Formal Preliminaries}
 
-The formalism used in this paper is based upon the notions of unsatisfiability and refutation rather than upon the notions of validity and proof. It is well known (cf. \cite{davis_1960} and \cite{robinson_1963}) that in order to determine whether a finite set $S$ of sentences of first-order logical is satisfiable, it is sufficient to assume that each sentence in $S$ is in prenex form with no existential quantifiers in the prefix; moreover the matrix of each sentence in $S$ can be assumed to be a disjunction of formulas each of which is either an atomic formula or the negation of an atomic formula. Therefore our syntax is set up so that the natural syntactical unit is a finite set $S$ of sentences in this special form. The quantifier prefix is omitted from each sentence, since it consists just of universal quanfitifiers binding each variable in the sentence; furthermore the matrix of each sentence is regarded simple as the set of its disjuncts, on the grounds that the order and multiplicity of the disjuncts in a disjunction are immaterial.
+The formalism used in this paper is based upon the notions of unsatisfiability and refutation rather than upon the notions of validity and proof. It is well known (cf. \cite{davis_1960} and \cite{robinson_1963}) that in order to determine whether a finite set $S$ of sentences of first-order logic is satisfiable, it is sufficient to assume that each sentence in $S$ is in prenex form with no existential quantifiers in the prefix; moreover the matrix of each sentence in $S$ can be assumed to be a disjunction of formulas each of which is either an atomic formula or the negation of an atomic formula. Therefore our syntax is set up so that the natural syntactical unit is a finite set $S$ of sentences in this special form. The quantifier prefix is omitted from each sentence, since it consists just of universal quantifiers binding each variable in the sentence; furthermore the matrix of each sentence is regarded simple as the set of its disjuncts, on the grounds that the order and multiplicity of the disjuncts in a disjunction are immaterial.
 
 Accordingly we introduce the following definitions (following in part the nomenclature of \cite{davis_1960} and \cite{robinson_1963}):\\
 2.1 \emph{Variables}. The following symbols, in alphabetical order, are variables:
 \begin{align*}
     u, v, w, x, y, z, u_1 , v_1 , w_1 , x_1 , y_1 , z_1 , u_2 , \dotsm , etc.
 \end{align*}
+\newpage
+
+2.2 \emph{Function symbols}. The following symbols, in alphabetical order, are function symbols of degree $n$, for each $n\geqq0$:
+\begin{align*}
+    a^n,b^n,c^n,d^n,e^n,f^n,g^n,h^n,k^n,a_1^n,b_1^n,\dotsm, etc.
+\end{align*}
+
+\noindent When $n = 0$, the superscript may be omitted. Function symbols of degree 0 are \emph{individual constants}.
+
+2.3 \emph{Predicate symbols}. The following symbols, in alphabetical order, are predicate symbols of degree $n$, for each $n\geqq0$:
+\begin{align*}
+    P^n,Q^n,R^n,P_1^n,Q_1^n,R_1^n,P_2^n,\dotsm, etc.
+\end{align*}
+
+\noindent The superscript may be omitted when $n$ is 0.
+
+2.4 \emph{The negation symbol}. The following symbol is the negation symbol: $\sim$
+
+2.5 \emph{Alphabetical order of symbols}. The set of all symbols is well ordered in alphabetical order by adding to the above ordering conventions the rule that variables precede function symbols, function symbols precede predicate symbols, predicate symbols precede the negation symbol, function symbols of lower degree precede function symbols of higher degree, and predicate symbols of lower degree precede predicate symbols of higher degree.
+
+2.6 \emph{Terms}. A variable is a term, and a string of symbols consisting of a function symbol of degree $n\geqq0$ followed by $n$ terms is a term.
+
+2.7 \emph{Atomic formulas}. A string of symbols consisting of a predicate symbol of degree $n\geqq0$ followed by $n$ terms is an atomic formula.
+
+2.8 \emph{Literals}. An atomic formula is a literal; and if $A$ is an atomic formula then $\sim A$ is a literal.
+
+2.9 \emph{Complements}. If $A$ is an atomic formula, then the two literals $A$ and $\sim A$ are said to be each other's complements, and to form, in either order, a complementary pair.
+
+2.10 \emph{Clauses}. A finite set (possible empty) of literals is called a clause. The empty clause is denoted by: $\square$
+
+2.11 \emph{Ground literals}. A literal which contains no variables is called a ground literal.
+
+2.12 \emph{Ground clauses}. A clause, each member of which is a ground literal, is called a ground clause. In particular $\square$ is a ground clause.
+
+2.13 \emph{Well-formed expressions}. Terms and literals are (the only) well formed expressions.
+
+2.14 \emph{Lexical order of well-formed expressions}. The set of all well formed expressions is well ordered in lexical order by the rule that $A$ precedes $B$ just in case that $A$ is shorter than $B$ or, if $A$ and $B$ are of equal length, then $A$ has the alphabetically earlier symbol in the first symbol position at which $A$ and $B$ have distinct symbols.
+
+In writing well-formed expressions for illustrative purposes, we follow the more readable plan of enclosing the $n$ terms following a function symbol or predicate symbol of degree $n$ by a pair of parentheses, separating the terms, if there are two or more, by commas. We can then unambiguously omit all superscripts from symbols. In writing finite sets, we follow the usual convention of
+
 \newpage
 
 TODO REMOVE
