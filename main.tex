@@ -3,6 +3,7 @@
 \usepackage{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
+\usepackage{amsmath}
 
 \geometry{
     paperheight=9.75in,
@@ -19,6 +20,7 @@
 \begin{document}
 
 \maketitle
+
 
 \textit{Abstract}. Theorem-proving on the computer, using procedures based on the fundamental theorem of Herbrand concerning the first-order predicate calculus, is examined with a view towards improving the efficiency and widening the range of practical applicability of these procedures. A close analysis of the process of substitution (of terms for variables), and the process of truth-functional analysis of the results of such substitutions, reveals that both processes can be combined into a single new process (called \emph{resolution}), iterating which is vastly more efficient than the older cyclic procedures consisting of substitution stages alternating with truth-functional analysis stages.
 
@@ -42,4 +44,32 @@ Journal of the Association for Computing Machinery, Val. 1 2, No. 1 (January, 19
 
 \newpage
 
+From the theoretical point of view, however, an inference principle need only be \emph{sound} (i.e., allow only logical consequences of premisses to be deduced from them) and \emph{effective} (i.e., it must be algorithmically decidable whether an alleged application of the interference principle is indeed an application of it). When the agent carrying out the application of an inference principle is a modern computing machine, the traditional limitation on the complexity of inference principles is no longer very appropriate. More powerful principles, involving perhaps a much greater amount of combinatorial information-processing for a single application, become a possibility.
+
+In the system described in this paper, one such inference principle is used. It is called the \emph{resolution principle}, and it is machine-oriented, rather than human-oriented, in the sense of the preceding remarks. The resolution principle is quite powerful, both in the psychological sense that it condones single inferences which are often beyond the ability of the human to grasp (other than discursively), and in the theoretical sense that it alone, as sole inference principle, forms a complete system of first-order logic. While this latter property is of no great importance, it is interesting that (as far as the author is aware) no other complete system of first-order logic has consisted of just one inference principle, if one construes the device of introducing a logical axiom, given outright, or by a schema, as a (premiss-free) inference principle.
+
+The main advantage of the resolution principle lies in its ability to allow us to avoid one of the major combinatorial obstacles to efficiency which have plagued earlier theorem-proving procedures.
+
+In Section 2 the syntax and semantics of the particular formalism which is used in this paper are explained.
+
+\section{Formal Preliminaries}
+
+The formalism used in this paper is based upon the notions of unsatisfiability and refutation rather than upon the notions of validity and proof. It is well known (cf. \cite{davis_1960} and \cite{robinson_1963}) that in order to determine whether a finite set $S$ of sentences of first-order logical is satisfiable, it is sufficient to assume that each sentence in $S$ is in prenex form with no existential quantifiers in the prefix; moreover the matrix of each sentence in $S$ can be assumed to be a disjunction of formulas each of which is either an atomic formula or the negation of an atomic formula. Therefore our syntax is set up so that the natural syntactical unit is a finite set $S$ of sentences in this special form. The quantifier prefix is omitted from each sentence, since it consists just of universal quanfitifiers binding each variable in the sentence; furthermore the matrix of each sentence is regarded simple as the set of its disjuncts, on the grounds that the order and multiplicity of the disjuncts in a disjunction are immaterial.
+
+Accordingly we introduce the following definitions (following in part the nomenclature of \cite{davis_1960} and \cite{robinson_1963}):\\
+2.1 \emph{Variables}. The following symbols, in alphabetical order, are variables:
+\begin{align*}
+    u, v, w, x, y, z, u_1 , v_1 , w_1 , x_1 , y_1 , z_1 , u_2 , \dotsm , etc.
+\end{align*}
+\newpage
+
+TODO REMOVE
+\cite{church_1936}
+\cite{davis_1960}
+\cite{friedman_1963}
+\cite{gilmore_1960}
+\cite{robinson_1963}
+
+\bibliographystyle{acm}
+\bibliography{resolution.bib}
 \end{document}
