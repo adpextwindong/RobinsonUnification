@@ -1,33 +1,45 @@
 %http://ropas.snu.ac.kr/lib/dock/Ro1965.pdf
-\documentclass{article}
+\documentclass[8pt]{extarticle}
+\usepackage{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
 
-\title{A Machine-Oriented Logic Based on the Resolution Principle}
+\geometry{
+    paperheight=9.75in,
+    paperwidth=6.25in,
+    left=0.90in,
+    top=0.5in
+}
+
+%TODO fix horizontal spacing of title
+\title{\textbf{ A Machine-Oriented Logic Based on the Resolution Principle}}
 \author{J. A. Robinson}
-\date{Argonne National Laboratory* and Rice University$\dagger$}
+\date{\emph{Argonne National Laboratory* and Rice University$\dagger$}}
 
 \begin{document}
 
 \maketitle
 
-\textit{Abstract}. Theorem-proving on the computer, using procedures based on the fundamental theorem of Herbrand concerning the first-order predicate calculus, is examined with a view towards improving the efficiency and widening the range of practical applicability of these procedures. A close analysis of the process of substitution (of terms for variables), and the process of truth-functional analysis of the results of such substitutions, reveals that both processes can be combined into a single new process (called \textit{resolution}), iterating which is vastly more efficient than the older cyclic procedures consisting of substitution stages alternating with truth-functional analysis stages.
+\textit{Abstract}. Theorem-proving on the computer, using procedures based on the fundamental theorem of Herbrand concerning the first-order predicate calculus, is examined with a view towards improving the efficiency and widening the range of practical applicability of these procedures. A close analysis of the process of substitution (of terms for variables), and the process of truth-functional analysis of the results of such substitutions, reveals that both processes can be combined into a single new process (called \emph{resolution}), iterating which is vastly more efficient than the older cyclic procedures consisting of substitution stages alternating with truth-functional analysis stages.
 
 The theory of the resolution process is presented in the form of a system of first-order logic with just one inference principle (the resolution principle). The completeness of the system is proved; the simplest proof-procedure based on the system is then the direct implementation of the proof of completeness. However, this procedure is quite inefficient, and the paper concludes with a discussion of several principles (called search principles) which are applicable to the design of efficient proof-procedures employing resolution as the
 basic logical process.
 
 \section{Introduction}
+Presented in this paper is a formulation of first-order logic which is specifically designed for use as the basic theoretical instrument of a computer theorem-proving program. Earlier theorem-proving programs have been based on systems of first-order logic which were originally devised for other purposes. A prominent feature of those systems of logic, which is lacking in the system described in this paper, is the relative \emph{simplicity} of their inference principles.
 
-Presented in this paper is a formulation of first-order logic which is specifically designed for use as the basic theoretical instrument of a computer theorem-proving program. Earlier theorem-proving programs have been based on systems of first-order logic which were originally devised for other purposes. A prominent feature of those systems of logic, which is lacking in the system described in this paper, is the relative \textit{simplicity} of their inference principles.
-
-Traditionally, a single step in a deduction has been required, for pragmatic and psychological reasons, to be simple enough, broadly speaking, to be apprehended as correct by a human being in a single intellectual act. No doubt this custom 
-originates in the desire that each single step of a deduction should be indubitable, even though the deduction as a whole may consist of a long chain of such steps. The ultimate conclusion of a deduction, if the deduction is correct, follows logically from the premisses used in the  deduction; but the human mind may well find the unmediated transition from the premisses to the conclusion surprising, hence (psychologically) dubitable. Part of the point, then, of the logical analysis of deductive reasoning has been to reduce complex inferences, which are beyond the capacity of the human mind to grasp as single steps, to chains of simpler inferences, each of which is within the capacity of the human mind to grasp as a
+Traditionally, a single step in a deduction has been required, for pragmatic and psychological reasons, to be simple enough, broadly speaking, to be apprehended as correct by a human being in a single intellectual act. No doubt this custom originates in the desire that each single step of a deduction should be indubitable, even though the deduction as a whole may consist of a long chain of such steps. The ultimate conclusion of a deduction, if the deduction is correct, follows logically from the premisses used in the  deduction; but the human mind may well find the unmediated transition from the premisses to the conclusion surprising, hence (psychologically) dubitable. Part of the point, then, of the logical analysis of deductive reasoning has been to reduce complex inferences, which are beyond the capacity of the human mind to grasp as single steps, to chains of simpler inferences, each of which is within the capacity of the human mind to grasp as a
 single transaction.\\
 
 Work performed under the auspices of the U. S. Atomic Energy Commission.\\
 
-* Argonne, Illinois.\\
+* Argonne, Illinois.
 
-$\dagger$ Present address: Rice University, Houston, Texas. 
+$\dagger$ Present address: Rice University, Houston, Texas. \\
 
-Journal of the Association for Computing Machinery, Val. 1 2, No. 1 (January, 1965), pp. 23-41 
+%TODO place this under page number
+Journal of the Association for Computing Machinery, Val. 1 2, No. 1 (January, 1965), pp. 23-41
+
+\newpage
+
 \end{document}
