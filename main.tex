@@ -43,10 +43,11 @@
 \newcustomtheorem{p5theorem}{Theorem}       %Page 5 Theorem 1
 \newcustomtheorem{grt}{}                    %Page 6 Ground Resolution Theorem
 \newcustomtheorem{p7theorem}{Theorem}       %Page 7 Theorem 2
-\newcustomtheorem{p7lemma}{}           %Page 7 Lemma
+\newcustomtheorem{p7lemma}{}                %Page 7 Lemma
 \newcustomtheorem{p7corollary}{Corollary}   %Page 7 Corollary
 \newcustomtheorem{pg8theorem3}{Theorem}     %Page 8 Theorem 3
 \newcustomtheorem{pg8rt}{Resolution Theorem}%Page 8 Resolution Theorem
+\newcustomtheorem{unificationTheorem}{}     %Page 11 Unification Theorem
 
 %TODO fix horizontal spacing of title
 \title{\textbf{ A Machine-Oriented Logic Based on the Resolution Principle}}
@@ -415,6 +416,67 @@ nonempty set $A$ of well-formed expressions, is called the Unification Algorithm
 
 This definition requires justification in the form of a proof that the given
 process is in fact an algorithm. In fact the process always terminates for any
+
+\newpage
+
+finite nonempty set of well-formed expressions, for otherwise there would be
+generated an infinite sequence $A, A\sigma_1,A\sigma_2,\dotsm$ of finite nonempty sets of well-formed expressions with the property that each successive set contains one less variable than its predecessor (namely, $A\sigma_k$ contains $V_k$ but $A\sigma_{k+1}$ does not). But this is impossible, since $A$ contains only finitely many distinct variables.
+
+\subsection{Most general unifiers.}
+If $A$ is a finite nonempty set of well-formed expressions for which the Unification Algorithm terminates in step 2, the substitution $\sigma A$ then available as output of the Unification Algorithm is called the most
+general unifier of $A$, and $A$ is then said to be most generally unifiable.
+
+\subsection{Key triples.}
+The ordered triple $\langle L, M, N \rangle$ of finite sets of literals is said
+to be a key triple of the ordered pair $\langle C,D\rangle$ of clauses just in case the following conditions are satisfied.
+
+\subsubsection{}
+$L$ and $M$ are noempty, and $L \subseteq C, M \subseteq D$
+\subsubsection{}
+$N$ is the set of atomic formulas which are members, or complements
+of members, of the set $L\xi_c\cup M\eta_d$ (cf. definition (5.4)).
+\subsubsection{}
+$N$ is most generally unifiable, with most general unifier $\sigma N$.
+\subsubsection{}
+The sets $L\xi_{c\sigma_N}$ and $M_{\eta_d\sigma_N}$ are singletons whose members are complements.
+
+Evidently, a pair $\langle C, D\rangle$ of clauses has at most a finite number of key triples, and possibly none at all.
+
+\subsection{Resolvents.}
+A resolvent of the two clauses $C$ and $D$ is any clause of the
+form: $(C - L)\xi_{c\sigma_N} \cup (D - M)_{\eta_D\sigma_N}$ where $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$.
+By the remark following definition (5.10) it is dear that two clauses $C$ and $D$ can have at most finitely many resolvents, and possibly none at all.
+
+\subsection{Resolutions.}
+If $S$ is any set of clauses then the resolution of $S$, denoted
+by $\mathscr{R}(S)$, is the set of all clauses which are members of $S$ or resolvents of members of $S$.
+
+\subsection{$N$-th resolution.}
+The $n$\-th resolution of $S$, where $S$ is any set of clauses,
+is denoted by $\mathscr{R}^n(S)$ and is defined for all $n \geqq 0$ exactly analogously to definition (2.21).
+
+This completes our second group of definitions. The definition of $\mathscr{R}(S)$ as given is adequate for our theoretical argument, but in practice one would not include in it both the resolvents of $\langle C, D\rangle$ and the resolvents of $\langle D, C\rangle$, since these are in fact identical up to a change of variables. When $C$ and $D$ are both ground clauses, the resolvents of $\langle C, D\rangle$ are actually identical with those of $\langle D, C\rangle$, and are precisely the ground resolvents of $C$ and $D$, as is easily verified.
+
+It now remains to prove the basic Lemma, which will be done after we have
+first proved the following theorem establishing the basic property of unification, which we need hi the proof of the Lemma and elsewhere in our theory: 
+
+
+\begin{unificationTheorem}{Unification Theorem}\label{unificationTheorem}
+Let $A$ be any finite nonempty set of well-formed expressions. If $A$ is unifiable, then $\Lambda$ is most generally unifiable with most general
+unifier $\sigma_A$; moreover, for any unifier $\theta$ of $A$ there is a substitution $\lambda$ such that
+$\theta = \sigma_A\lambda$.
+\end{unificationTheorem}
+
+\begin{proof}
+It will suffice to prove that under the hypotheses of the theorem the
+Unification Algorithm will terminate, when applied to A, at step 2; and that
+for each $k \geqq 0$  until the Unification Algorithm so terminates, the equation
+\end{proof}
+
+
+
+
+
 
 \newpage
 
