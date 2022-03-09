@@ -7,7 +7,12 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathrsfs}
+\usepackage{titlesec}
 
+%https://tex.stackexchange.com/a/164334
+\titleformat{\subsection}[runin]
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+  
 \geometry{
     paperheight=9.75in,
     paperwidth=6.25in,
@@ -33,6 +38,8 @@
 \newcustomtheorem{p7theorem}{Theorem}       %Page 7 Theorem 2
 \newcustomtheorem{p7lemma}{Lemma}           %Page 7 Lemma
 \newcustomtheorem{p7corollary}{Corollary}   %Page 7 Corollary
+\newcustomtheorem{pg8theorem3}{Theorem}     %Page 8 Theorem 3
+\newcustomtheorem{pg8rt}{Resolution Theorem}%Page 8 Resolution Theorem
 
 %TODO fix horizontal spacing of title
 \title{\textbf{ A Machine-Oriented Logic Based on the Resolution Principle}}
@@ -246,6 +253,52 @@ universe of $S$, then: $\mathscr{R}^n(P(S)) \subseteq P(\mathscr{R}^n(S))$ for a
     \end{align*}
 \end{proof}
 \noindent and the Corollary is proved.
+\newpage
+
+Now by the above Corollary to the basic Lemma we may immediately obtain
+a third version, of Herbrand's Theorem from Theorem 2: 
+
+\begin{pg8theorem3}{3}\label{pg8theorem3}
+If $S$ is any finite set of clauses, then $S$ is unsatisfiable if and only if, for soem finite subset $P$ of the Herbrand universe of $S$, and some $n\geqq 0$, $P\mathscr{R}^n(S)$ contains $\square$.
+\end{pg8theorem3}
+
+Here, the order of the saturation and $n$th resolution operations is reversed.
+Now a rather surprising simplification of Theorem 3 can be made, on the basis
+of the remark that mere replacement of variables by terms cannot produce $\square$
+from a nonempty clause. Hence $P(\mathscr{R}^n(S))$ will contain $\square$ if and only if $\mathscr{R}^n(S)$
+contains $\square$. From Theorem 3, therefore, we immediately obtain our final version
+of Herbrand's Theorem, which is the main result of this paper, and which we
+call:
+
+
+\begin{pg8rt}
+If $S$ is any finite set of clauses, then S is unsatisfiable
+if and only if $\mathscr{R}^n(S)$ contains $\square$, for some $n\geqq 0$. 
+\end{pg8rt}
+
+The statement of the Resolution Theorem is just that of the Ground Resolution Theorem with the word "ground" omitted. Apart, therefore, from the somewhat more complex way in which the resolvents of two clauses are computed
+(described in Section 5) the method suggested by the Resolution Theorem for
+testing a finite set S of clauses for unsatisfiability is exactly like that given earlier for the ease that S is a set of ground clauses, and indeed it. automatically reverts to that method when it is applied to a finite set of ground clauses. However, it is no longer the ease in general that the nested sequence
+
+\begin{align*}
+    S \subseteq \mathscr{R}(S) \subseteq \mathscr{R}^2(S) \subseteq \dotsm \subseteq \mathscr{R}^n(S) \subseteq \dotsm
+\end{align*}
+
+must terminate for all finite $S$. By Church's Theorem this could not be so, for otherwise we would have a decision procedure for satisfiability for our formulation of first-order logic. 
+
+Consider now the "proof set demon" discussed in Section 3. We there supposed
+that if see were given a proof set $P$ for an unsatisfiable set $S$ of clauses, all we would have to do would be to compute until we encountered the first
+$\mathscr{R}^n(P(S))$ which contains $\square$, in order to obtain from it a formal refutation of $S$. But the Resolution Theorem assures us that by the time we had computed ,$\mathscr{R}^n(S)$, if not before, we would have turned up $\square$, despite our ignorance of $P$. In this sense the Resolution Theorem makes the proof set demon's role unnecessary.
+
+In Section 5 we introduce a little more formal apparatus by a second batch
+of definitions, and pay off our debts by defining the general notion of resolution and proving the basic Lemma. 
+
+\section{Substitution, Unification and Resolution}
+
+The following definitions are concerned with the operation of instantiation,
+i.e. substitution of terms for variables in well-formed expressions and in sets of well-formed expressions, and with the various auxiliary notions needed to define resolution in general.
+
+\subsection{Substitution components.} A substitution component is any expression of
 \newpage
 
 TODO REMOVE
