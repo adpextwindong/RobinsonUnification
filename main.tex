@@ -13,7 +13,9 @@
 %TODO style subsection's more
 \titleformat{\subsection}[runin]
   {\normalfont\large\bfseries}{\thesubsection}{1em}{}
-  
+\titleformat{\subsubsection}[runin]
+  {\normalfont\large\bfseries}{\thesubsubsection}{1em}{}
+
 \geometry{
     paperheight=9.75in,
     paperwidth=6.25in,
@@ -289,20 +291,69 @@ testing a finite set S of clauses for unsatisfiability is exactly like that give
 
 must terminate for all finite $S$. By Church's Theorem this could not be so, for otherwise we would have a decision procedure for satisfiability for our formulation of first-order logic. 
 
-Consider now the "proof set demon" discussed in Section 3. We there supposed
-that if see were given a proof set $P$ for an unsatisfiable set $S$ of clauses, all we would have to do would be to compute until we encountered the first
-$\mathscr{R}^n(P(S))$ which contains $\square$, in order to obtain from it a formal refutation of $S$. But the Resolution Theorem assures us that by the time we had computed ,$\mathscr{R}^n(S)$, if not before, we would have turned up $\square$, despite our ignorance of $P$. In this sense the Resolution Theorem makes the proof set demon's role unnecessary.
+Consider now the "proof set demon" discussed in Section 3. We there supposed that if see were given a proof set $P$ for an unsatisfiable set $S$ of clauses, all we would have to do would be to compute until we encountered the first $\mathscr{R}^n(P(S))$ which contains $\square$, in order to obtain from it a formal refutation of $S$. But the Resolution Theorem assures us that by the time we had computed ,$\mathscr{R}^n(S)$, if not before, we would have turned up $\square$, despite our ignorance of $P$. In this sense the Resolution Theorem makes the proof set demon's role unnecessary.
 
-In Section 5 we introduce a little more formal apparatus by a second batch
-of definitions, and pay off our debts by defining the general notion of resolution and proving the basic Lemma. 
+In Section 5 we introduce a little more formal apparatus by a second batch of definitions, and pay off our debts by defining the general notion of resolution and proving the basic Lemma.
 
 \section{Substitution, Unification and Resolution}
 
-The following definitions are concerned with the operation of instantiation,
-i.e. substitution of terms for variables in well-formed expressions and in sets of well-formed expressions, and with the various auxiliary notions needed to define resolution in general.
+The following definitions are concerned with the operation of instantiation, i.e. substitution of terms for variables in well-formed expressions and in sets of well-formed expressions, and with the various auxiliary notions needed to define resolution in general.
 
 \subsection{Substitution components.} A substitution component is any expression of
 \newpage
+
+\noindent the form $T/V$, where $V$ is any variable and $T$ is any term different from $V$. $V$ is
+called the \emph{variable} of the component $T/V$, and $T$ is called the \emph{term} of the component $T/V$.
+
+\subsection{Substitutions.}
+
+A substitution is any finite set (possibly empty) of substitution components none of the variables of which are the same. If $P$ is any set;
+of terms, and the terms of the components of the substitution $\theta$ are all in $P$, we say" that $\theta$ is a substitution over $P$. We write the substitution whose components are $T_1/V_1, \dotsm , T_k/V_k as \{T_1/V_1, \dotsm, T_k/V_k\}$, with the understanding that the order of the components is immaterial. We use lowercase Greek letters to denote substitutions. In particular, $\epsilon$ is the \emph{empty substitution}.
+
+\subsection{Instantiation.}
+
+IF E is any finite string of symbols and
+
+\begin{align*}
+    \theta = \{T_1/V_1, \dotsm, T_k/V_k\}
+\end{align*}
+
+%TODO double check the subscript
+is any substitution, then the instantiation of $E$ by $\theta$ is the operation of replacing each occurrence of the variable $V_i$, $1 \leq i \leq k$, in $E$ by an occurrence of the term $T_i$. The resulting string, denoted by $E\theta$, is called the instance of $E$ by $\theta$. I.e., if $E$ is the string $E_0V_{i_1}E_1 \dotsm V_{i_n}E_n$ then $E\theta$ is the string $E_\theta T_{i_1}E_1\dotsm T_{i_n}E_n$. Here, none of the substrings $E_i$ of $E$ contain occurrences of the variables $V_1, \dotsm , V_k$ some of the $E_i$ are possibly null, $n$ is possibly $0$, and each $V_{i_i}$ is an occurrence of one of the variables $V_i,\dotsm V_k$. Any string $E\theta$ is called an instance of the
+string $E$. If $C$ is any set of strings and $\theta$ a substitution, then the instance of $C$ by $\theta$ is the set of all strings $E0$, where $E$ is in $C$. We denote this set. by $C\theta$, and say that it is an instance of $C$.
+
+\subsection{Standardization.}
+
+If $C$ is any finite set of strings, and $V_1, \dotsm , V_k$ are
+all the distinct variables, in alphabetical order, which occur in strings in $C$, then
+the $x$-standardization of $C$, denoted by $\xi_c$, is the substitution
+$x_1/V_1,\dotsm,x_k/V_k$
+and the $y$-standardization of $C$, denoted by $\eta_c$, is the substitution
+\begin{align*}
+    \{y_1/V_1,\dotsm,y_k/V_k\}
+\end{align*}
+
+\subsection{Compositions of substitutions.}
+
+If $\theta = \{T_1/V_1,\dotsm T_k/V_k\}$ and $\lambda$ are any
+two substitutions, then the set $\theta^\prime \cup \lambda^\prime$ ,where $\lambda^\prime$ is the set of all components of $\lambda$
+whose variables are not among $V_1,\dotsm V_k$, and $\theta^\prime$ is the set of all components
+$T_i\lambda/V_i, 1 \leq i \leq k$, such taht $T_i\lambda$ is different from $V_i$, is called the composition of $\theta$ and $\lambda$, and is denoted by $\theta\lambda$
+
+It is straight forward to verify that $\epsilon\theta = \theta\epsilon = \theta$ for any substitution $\theta$. Also,
+composition of substitutions enjoys the associative property $(\theta\lambda)\mu = \theta(\lambda\mu)$, so
+that we may omit parentheses in writing multiple compositions of substitutions. 
+These properties of the composition of substitutions are established by the following propositions.
+
+\subsubsection{}
+$(E\sigma)\lambda = E(\sigma\lambda)$ \emph{for all strings E and all} substitutions $\sigma, \lambda$
+
+\begin{proof}
+Let $\sigma = \{T_1/V_1,\dotsm,T_k/V_k\}$, $\lambda = \{U_1/W_1,\dotsm,U_m/W_m\}$ and\\$E = E_oV_i,E_1,\dotsm V_{i_n}E_n$ as explained in (5.3) above. Then by definition $E\sigma =$
+\end{proof}
+\newpage
+
+TODO fix all set braces
 
 TODO REMOVE
 \cite{church_1936}
