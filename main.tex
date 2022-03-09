@@ -8,6 +8,9 @@
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{titlesec}
+\usepackage{enumitem}
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{label = Step \arabic*.}
 
 %https://tex.stackexchange.com/a/164334
 %TODO style subsection's more
@@ -351,6 +354,68 @@ $(E\sigma)\lambda = E(\sigma\lambda)$ \emph{for all strings E and all} substitut
 \begin{proof}
 Let $\sigma = \{T_1/V_1,\dotsm,T_k/V_k\}$, $\lambda = \{U_1/W_1,\dotsm,U_m/W_m\}$ and\\$E = E_oV_i,E_1,\dotsm V_{i_n}E_n$ as explained in (5.3) above. Then by definition $E\sigma =$
 \end{proof}
+
+%TODO use this as a ref for the hard to read subscript
+\newpage
+$E_0T_{1_1}E_1\dotsm T_{i_n}E_n$, and $(E\sigma)\lambda = \overline{E}_0\overline{T}_{i_1}\overline{E}_1\dotsm\overline{T}_{i_n}\overline{E}_n$, where each $\overline{T}_{i_i}$ is $T_{i_i}\lambda_i$ and each $\overline{E}_i$ is $E_i\lambda^\prime$, where $\lambda^\prime$ is the set of all components of $\lambda$ whose variables are not among $V_1,\dotsm,V_k$ (since none of these variables occur in any $E_i$). But $\sigma\lambda = \sigma^\prime \cup \lambda^\prime$, where each component of $\sigma\prime$ is just $\overline{T}_i/V_i$ whenever $\overline{T}_i$ is different from $V_i$. Hence $E(\sigma\lambda) = \overline{E}_0\overline{T}_{i_i}\overline{E}_1\dotsm\overline{T}_{i_n}\overline{E}_n$
+
+\subsubsection{}
+\emph{For any substitutions $\sigma$, $\lambda$: if $E\sigma = E\lambda$ for all strings $E$, then $\sigma = \lambda$}
+\begin{proof}
+Let $V_1,\dotsm,V_k$ include all the variables of the components of $\sigma$ and $\lambda$; then $V_j\sigma = V_j\lambda$, for $1 \leq j \leq k$. Then all the components of $\sigma$ and $\lambda$ are the same.
+\end{proof}
+
+\subsubsection{}
+\emph{For any substitutions $\sigma, lambda, mu: (\sigma\lambda)\mu = \sigma(\lambda\mu)$}
+\begin{proof}
+Let $E$ be any string. Then by 5.5.1,
+\begin{align*}
+    E((\sigma\lambda)\mu) &= (E(\sigma\lambda))\\
+                          &= ((E\sigma)\lambda)\mu\\
+                          &= (E\sigma)(\lambda\mu)\\
+                          &= E(\sigma(\lambda\mu)).
+\end{align*}
+\end{proof}
+
+\noindent Hence $(\sigma\lambda)\mu = \sigma(\lambda\mu)$ by (5.5.2).
+
+We shall also have occasion to use the following distributive property. 
+\subsubsection{}
+\emph{For any sets $A$, $B$ of strings and substitution $\lambda: (A \cup B)\lambda = A\lambda\cup B\lambda$}
+
+\subsection{Disagreement sets.}
+
+If $A$ is any set of well-formed expressions, we call the
+set $B$ the disagreement set of $A$ whenever $B$ is the set of all well-formed subexpressions of the well-formed expressions in $A$, which begin at the first symbol position at which not all well-formed expressions in $A$ have the same symbol.
+\noindent Example:
+
+\begin{align*}
+                           A &= \{P(x,h(x,y),y),P(x,k(y),y), P(x,a,b)\}\\
+\text{Disagreement set of} A &= \{h(x,y), k(y), a\}.
+\end{align*}
+
+Evidently, if $A$ is nonempty and is not a singleton, then the disagreement set
+of $A$ is nonempty and is not a singleton. 
+
+\subsection{Unification.}
+If $A$ is any set of well-formed expressions and $\theta$ is a substitution, then $\theta$ is said to unify $A$, or to be a unifier of $A$, if $A\theta$ is a singleton. Any set of well-formed expressions which has a unifier is said to be unifiable. 
+
+Evidently, if $\theta$ unifies $A$, but $A$ is not a singleton, then $\theta$ unifies the disagreement set of $A$.
+
+\subsection{Unification Algorithm.}
+The following process, applicable to any finite
+nonempty set $A$ of well-formed expressions, is called the Unification Algorithm:
+
+%https://tex.stackexchange.com/a/341190
+\begin{steps}
+    \item Set $\sigma_0 = \epsilon$ and $k = 0$, and go to step 2.
+    \item If $A\sigma_k$ is not a singleton, go to step 3. Otherwise, set $\sigma_A = \sigma_k$ and terminate.
+    \item Let $V_k$ be the earliest, and $U_k$ the next earliest, in the lexical ordering of the disagreement set $B_k$ of $A\sigma_k$ If $V_k$ is a variable, and does not occur in $U_k$, set $\sigma_{k+1} = \sigma_k\{U_k/V_k\}$, add $1$ to $k$, and return to step 2. Otherwise, terminate.
+\end{steps}
+
+This definition requires justification in the form of a proof that the given
+process is in fact an algorithm. In fact the process always terminates for any
+
 \newpage
 
 TODO fix all set braces
