@@ -10,6 +10,7 @@
 \usepackage{titlesec}
 
 %https://tex.stackexchange.com/a/164334
+%TODO style subsection's more
 \titleformat{\subsection}[runin]
   {\normalfont\large\bfseries}{\thesubsection}{1em}{}
   
@@ -33,10 +34,11 @@
   {\endinnercustomgeneric}
 }
 
+\newcustomtheorem{p5herbrandt}{}
 \newcustomtheorem{p5theorem}{Theorem}       %Page 5 Theorem 1
 \newcustomtheorem{grt}{}                    %Page 6 Ground Resolution Theorem
 \newcustomtheorem{p7theorem}{Theorem}       %Page 7 Theorem 2
-\newcustomtheorem{p7lemma}{Lemma}           %Page 7 Lemma
+\newcustomtheorem{p7lemma}{}           %Page 7 Lemma
 \newcustomtheorem{p7corollary}{Corollary}   %Page 7 Corollary
 \newcustomtheorem{pg8theorem3}{Theorem}     %Page 8 Theorem 3
 \newcustomtheorem{pg8rt}{Resolution Theorem}%Page 8 Resolution Theorem
@@ -88,78 +90,80 @@ In Section 2 the syntax and semantics of the particular formalism which is used 
 The formalism used in this paper is based upon the notions of unsatisfiability and refutation rather than upon the notions of validity and proof. It is well known (cf. \cite{davis_1960} and \cite{robinson_1963}) that in order to determine whether a finite set $S$ of sentences of first-order logic is satisfiable, it is sufficient to assume that each sentence in $S$ is in prenex form with no existential quantifiers in the prefix; moreover the matrix of each sentence in $S$ can be assumed to be a disjunction of formulas each of which is either an atomic formula or the negation of an atomic formula. Therefore our syntax is set up so that the natural syntactical unit is a finite set $S$ of sentences in this special form. The quantifier prefix is omitted from each sentence, since it consists just of universal quantifiers binding each variable in the sentence; furthermore the matrix of each sentence is regarded simple as the set of its disjuncts, on the grounds that the order and multiplicity of the disjuncts in a disjunction are immaterial.
 
 Accordingly we introduce the following definitions (following in part the nomenclature of \cite{davis_1960} and \cite{robinson_1963}):\\
-2.1 \emph{Variables}. The following symbols, in alphabetical order, are variables:
+\subsection{Variables}. The following symbols, in alphabetical order, are variables:
 \begin{align*}
     u, v, w, x, y, z, u_1 , v_1 , w_1 , x_1 , y_1 , z_1 , u_2 , \dotsm , etc.
 \end{align*}
 \newpage
 
-2.2 \emph{Function symbols}. The following symbols, in alphabetical order, are function symbols of degree $n$, for each $n\geqq0$:
+\subsection{Function symbols}. The following symbols, in alphabetical order, are function symbols of degree $n$, for each $n\geqq0$:
 \begin{align*}
     a^n,b^n,c^n,d^n,e^n,f^n,g^n,h^n,k^n,a_1^n,b_1^n,\dotsm, etc.
 \end{align*}
 
 \noindent When $n = 0$, the superscript may be omitted. Function symbols of degree 0 are \emph{individual constants}.
 
-2.3 \emph{Predicate symbols}. The following symbols, in alphabetical order, are predicate symbols of degree $n$, for each $n\geqq0$:
+\subsection{Predicate symbols}. The following symbols, in alphabetical order, are predicate symbols of degree $n$, for each $n\geqq0$:
 \begin{align*}
     P^n,Q^n,R^n,P_1^n,Q_1^n,R_1^n,P_2^n,\dotsm, etc.
 \end{align*}
 
 \noindent The superscript may be omitted when $n$ is 0.
 
-2.4 \emph{The negation symbol}. The following symbol is the negation symbol: $\sim$
+\subsection{The negation symbol}. The following symbol is the negation symbol: $\sim$
 
-2.5 \emph{Alphabetical order of symbols}. The set of all symbols is well ordered in alphabetical order by adding to the above ordering conventions the rule that variables precede function symbols, function symbols precede predicate symbols, predicate symbols precede the negation symbol, function symbols of lower degree precede function symbols of higher degree, and predicate symbols of lower degree precede predicate symbols of higher degree.
+\subsection{Alphabetical order of symbols}. The set of all symbols is well ordered in alphabetical order by adding to the above ordering conventions the rule that variables precede function symbols, function symbols precede predicate symbols, predicate symbols precede the negation symbol, function symbols of lower degree precede function symbols of higher degree, and predicate symbols of lower degree precede predicate symbols of higher degree.
 
-2.6 \emph{Terms}. A variable is a term, and a string of symbols consisting of a function symbol of degree $n\geqq0$ followed by $n$ terms is a term.
+\subsection{Terms}. A variable is a term, and a string of symbols consisting of a function symbol of degree $n\geqq0$ followed by $n$ terms is a term.
 
-2.7 \emph{Atomic formulas}. A string of symbols consisting of a predicate symbol of degree $n\geqq0$ followed by $n$ terms is an atomic formula.
+\subsection{Atomic formulas}. A string of symbols consisting of a predicate symbol of degree $n\geqq0$ followed by $n$ terms is an atomic formula.
 
-2.8 \emph{Literals}. An atomic formula is a literal; and if $A$ is an atomic formula then $\sim A$ is a literal.
+\subsection{Literals}. An atomic formula is a literal; and if $A$ is an atomic formula then $\sim A$ is a literal.
 
-2.9 \emph{Complements}. If $A$ is an atomic formula, then the two literals $A$ and $\sim A$ are said to be each other's complements, and to form, in either order, a complementary pair.
+\subsection{Complements}. If $A$ is an atomic formula, then the two literals $A$ and $\sim A$ are said to be each other's complements, and to form, in either order, a complementary pair.
 
-2.10 \emph{Clauses}. A finite set (possible empty) of literals is called a clause. The empty clause is denoted by: $\square$
+\subsection{Clauses}. A finite set (possible empty) of literals is called a clause. The empty clause is denoted by: $\square$
 
-2.11 \emph{Ground literals}. A literal which contains no variables is called a ground literal.
+\subsection{Ground literals}. A literal which contains no variables is called a ground literal.
 
-2.12 \emph{Ground clauses}. A clause, each member of which is a ground literal, is called a ground clause. In particular $\square$ is a ground clause.
+\subsection{Ground clauses}. A clause, each member of which is a ground literal, is called a ground clause. In particular $\square$ is a ground clause.
 
-2.13 \emph{Well-formed expressions}. Terms and literals are (the only) well formed expressions.
+\subsection{Well-formed expressions}. Terms and literals are (the only) well formed expressions.
 
-2.14 \emph{Lexical order of well-formed expressions}. The set of all well formed expressions is well ordered in lexical order by the rule that $A$ precedes $B$ just in case that $A$ is shorter than $B$ or, if $A$ and $B$ are of equal length, then $A$ has the alphabetically earlier symbol in the first symbol position at which $A$ and $B$ have distinct symbols.
+\subsection{Lexical order of well-formed expressions}. The set of all well formed expressions is well ordered in lexical order by the rule that $A$ precedes $B$ just in case that $A$ is shorter than $B$ or, if $A$ and $B$ are of equal length, then $A$ has the alphabetically earlier symbol in the first symbol position at which $A$ and $B$ have distinct symbols.
 
 In writing well-formed expressions for illustrative purposes, we follow the more readable plan of enclosing the $n$ terms following a function symbol or predicate symbol of degree $n$ by a pair of parentheses, separating the terms, if there are two or more, by commas. We can then unambiguously omit all superscripts from symbols. In writing finite sets, we follow the usual convention of
 
 \newpage
 \noindent enclosing the members in a pair of braces and of separating the members by commas, with the understanding that the order of writing the members in immaterial.
 
-2.15 \emph{Herbrand universes}. With any set $S$ of clauses there is associated a set of ground terms called the Herbrand universe of $S$, as follows: let $F$ be the set of all function symbols which occur in $S$. If $F$ contains any function symbols of degree 0, the functional vocabulary of $S$ is $F$; otherwise it is the set ${a}\union F$. The Herbrand universe of $S$ is then the set of all ground terms in which there occur only symbols in the functional vocabulary of $S$.
+\subsection{Herbrand universes}. With any set $S$ of clauses there is associated a set of ground terms called the Herbrand universe of $S$, as follows: let $F$ be the set of all function symbols which occur in $S$. If $F$ contains any function symbols of degree 0, the functional vocabulary of $S$ is $F$; otherwise it is the set ${a}\cup F$. The Herbrand universe of $S$ is then the set of all ground terms in which there occur only symbols in the functional vocabulary of $S$.
 
-2.16 \emph{Saturation}. If $S$ is any set of clauses and $P$ is any set of terms, then by $P(S)$ we denote the saturation of $S$ over $P$, which is the set of all ground clauses obtainable from members of $S$ by replacing variables with members of P-occurrences of the same variable in any one clause being replaced by occurrences of the same term.
+\subsection{Saturation}. If $S$ is any set of clauses and $P$ is any set of terms, then by $P(S)$ we denote the saturation of $S$ over $P$, which is the set of all ground clauses obtainable from members of $S$ by replacing variables with members of P-occurrences of the same variable in any one clause being replaced by occurrences of the same term.
 
-2.17 \emph{Models}. A set of ground literals which does not include a complementary pair is called a model. If $M$ is a model and $S$ is a set of ground clauses, then $M$ is a model of $S$ if, for all $C$ in $S$, $C$ contains a member of $M$. Then, in general, if $S$ is any set of clauses, and $H$ is the Herbrand universe of $S$, we say that $M$ is a model of $S$ just in case that $M$ is a model of $H(S)$.
+\subsection{Models}. A set of ground literals which does not include a complementary pair is called a model. If $M$ is a model and $S$ is a set of ground clauses, then $M$ is a model of $S$ if, for all $C$ in $S$, $C$ contains a member of $M$. Then, in general, if $S$ is any set of clauses, and $H$ is the Herbrand universe of $S$, we say that $M$ is a model of $S$ just in case that $M$ is a model of $H(S)$.
 
-2.18 \emph{Satisfiability}. A set $S$ of clauses is satisfiable if there is a model of $S$; otherwise $S$ is unsatisfiable.
+\subsection{Satisfiability}. A set $S$ of clauses is satisfiable if there is a model of $S$; otherwise $S$ is unsatisfiable.
 
 From the definition of satisfiability, it is clear that any set of clauses which contain $\square$ is unsatisfiable, and that the empty set of clauses is satisfiable. These two circumstances will appear quite natural as the development of our system proceeds. It is also clear that according to our semantic definitions each nonempty clause is interpreted, as explained in the informal remarks at the beginning of this section, as the universal closure of the disjunction of the literal which it contains.
 
-2.19 \emph{Ground resolvents}. If $C$ and $D$ are two ground clauses, and $L\subseteq C,M\subseteq D$ are two singletons (unit sets) whose respective members form a complementary pair, then the ground clause: $(C - L)\cup (D - M)$ is called a ground resolvent of $C$ and $D$.
+\subsection{Ground resolvents}. If $C$ and $D$ are two ground clauses, and $L\subseteq C,M\subseteq D$ are two singletons (unit sets) whose respective members form a complementary pair, then the ground clause: $(C - L)\cup (D - M)$ is called a ground resolvent of $C$ and $D$.
 
 Evidently any model of ${C,D}$ is also a model of ${C,D,R}$, where $R$ is a ground resolvent of $C$ and $D$. Not all pairs of ground clauses have ground resolvents, and some have more than one; but in no case, as is clear from the definitions, can two ground clauses have more than a finite number of ground resolvents.
 
-2.20 \emph{Ground resolution}. If $S$ is any set of ground clauses, then the ground resolution of $S$, denoted by $\mathscr{R}(S)$, is the set of ground clauses consisting of the members of $S$ together with all ground resolvents of all pairs of members of $S$.
+\subsection{Ground resolution}. If $S$ is any set of ground clauses, then the ground resolution of $S$, denoted by $\mathscr{R}(S)$, is the set of ground clauses consisting of the members of $S$ together with all ground resolvents of all pairs of members of $S$.
 
-2.21 \emph{N-th ground resolution}. If $S$ is any set of ground clauses, then the $n$th ground resolution of $S$, denoted by $\mathscr{R}^n(S)$, is defined for each $n\geqq 0$ as follows: $\mathscr{R}^0(S) = S$; and for $n\geqq 0$, $\mathscr{R}^{n+1} = \mathscr{R}(\mathscr{R}^n(S))$.
+\subsection{$N$-th ground resolution}. If $S$ is any set of ground clauses, then the $n$th ground resolution of $S$, denoted by $\mathscr{R}^n(S)$, is defined for each $n\geqq 0$ as follows: $\mathscr{R}^0(S) = S$; and for $n\geqq 0$, $\mathscr{R}^{n+1} = \mathscr{R}(\mathscr{R}^n(S))$.
 
-This completes the first batch of definitions. The next sections are concerned with the various forms that Herbrand's Theorem takes on in our system. To each such form, there is a type of refutation procedure which that form sug-
+This completes the first batch of definitions. The next sections are concerned with the various forms that Herbrand's Theorem takes on in our system. To each such form, there is a type of refutation procedure which that form suggests
 
 \newpage
 
-\noindent gests and justifies. The basic version is stated as follows (cf. \cite{davis_1960,gilmore_1960}):
+\noindent and justifies. The basic version is stated as follows (cf. \cite{davis_1960,gilmore_1960}):
 
-HERBRAND'S THEOREM. If $S$ is any finite set of clauses and $H$ its Herbrand universe, then $S$ is unsatisfiable if and only if some finite subset of $H(S)$ is unsatisfiable.
+\begin{p5herbrandt}{Herbrand's Theorem}\label{p5herbrandt}
+If $S$ is any finite set of clauses and $H$ its Herbrand universe, then $S$ is unsatisfiable if and only if some finite subset of $H(S)$ is unsatisfiable.
+\end{p5herbrandt}
 
 \section{\emph{Saturation Procedures}}
 
@@ -183,7 +187,7 @@ wanted, to be sure, is a simulation of the proof set demon on the computer; but 
 
 It turns out that it, is not completely out of the question. In fact, the method developed in the remainder of this paper seems to come quite close to supplying the required demon as a computing process. In Section 4 we take the first major step towards the development of this method by proving more versions of Herbrand's Theorem. We also give a preliminary informal account of the rest of the argument, pending a rigorous treatment in succeeding sections.
 
-\section{\emph{The Resolution Theorems and the Basic Lemma}}
+\section{The Resolution Theorems and the Basic Lemma}
 
 As a specific method for testing a finite set of ground clauses for satisfiability,
 the method of Davis-Putnam \cite{davis_1960} would be hard to improve on from the point
@@ -197,7 +201,7 @@ must eventually occur, since the number of distinct clauses formable from the
 finite set of literals which occur in $S$ is finite, and hence in the nested infinite
 sequence:
 
-4.1 $S \subseteq \mathscr{R}(S) \subseteq \mathscr{R}^2(S) \subseteq \dotsm \subseteq \mathscr{R}^n(S) \subseteq \dotsm$,\\not all of the inclusions are proper, since resolution introduces no new literals.
+\subsection{} $S \subseteq \mathscr{R}(S) \subseteq \mathscr{R}^2(S) \subseteq \dotsm \subseteq \mathscr{R}^n(S) \subseteq \dotsm$,\\not all of the inclusions are proper, since resolution introduces no new literals.
 
 In view of the finite termination of the described process we can prove its
 correctness, as stated above, in the form of the ground resolution theorem. 
@@ -228,8 +232,7 @@ is the set of clauses consisting of all members of $S$ together with all resolve
 
 The details of how this generalization is done must await the formal definitions in Section 5. However, an informal grasp of the general notion of resolution is obtainable now, prior to its exact treatment, from simply contemplating the fundamental property which it will be shown to possess: \emph{resolution is semicommutative with saturation.} More exactly, this property is as stated in the following basic Lemma, which is proved in Section 5:
 
-%TODO fix this free hanging period
-\begin{p7lemma}{}\label{p7lemma}
+\begin{p7lemma}{Lemma}\label{p7lemma}
 If $S$ is any set of clauses, and $P$ is any subset of the Herbrand universe of $S$, then: $\mathscr{R}(P(S)) \subseteq P(\mathscr{R}(S))$.
 \end{p7lemma}
 
