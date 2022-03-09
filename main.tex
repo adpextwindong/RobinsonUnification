@@ -33,14 +33,16 @@ basic logical process.
 Presented in this paper is a formulation of first-order logic which is specifically designed for use as the basic theoretical instrument of a computer theorem-proving program. Earlier theorem-proving programs have been based on systems of first-order logic which were originally devised for other purposes. A prominent feature of those systems of logic, which is lacking in the system described in this paper, is the relative \emph{simplicity} of their inference principles.
 
 Traditionally, a single step in a deduction has been required, for pragmatic and psychological reasons, to be simple enough, broadly speaking, to be apprehended as correct by a human being in a single intellectual act. No doubt this custom originates in the desire that each single step of a deduction should be indubitable, even though the deduction as a whole may consist of a long chain of such steps. The ultimate conclusion of a deduction, if the deduction is correct, follows logically from the premisses used in the  deduction; but the human mind may well find the unmediated transition from the premisses to the conclusion surprising, hence (psychologically) dubitable. Part of the point, then, of the logical analysis of deductive reasoning has been to reduce complex inferences, which are beyond the capacity of the human mind to grasp as single steps, to chains of simpler inferences, each of which is within the capacity of the human mind to grasp as a
-single transaction.\\
+single transaction.
+\vspace{0.3cm}
 
-Work performed under the auspices of the U. S. Atomic Energy Commission.\\
+Work performed under the auspices of the U. S. Atomic Energy Commission.
 
 * Argonne, Illinois.
 
-$\dagger$ Present address: Rice University, Houston, Texas. \\
+$\dagger$ Present address: Rice University, Houston, Texas.
 
+\vspace{0.2in}
 %TODO fix firstpage footer
 Journal of the Association for Computing Machinery, Val. 1 2, No. 1 (January, 1965), pp. 23-41
 
@@ -127,6 +129,27 @@ Evidently any model of ${C,D}$ is also a model of ${C,D,R}$, where $R$ is a grou
 This completes the first batch of definitions. The next sections are concerned with the various forms that Herbrand's Theorem takes on in our system. To each such form, there is a type of refutation procedure which that form sug-
 
 \newpage
+
+\noindent gests and justifies. The basic version is stated as follows (cf. \cite{davis_1960,gilmore_1960}):
+
+HERBRAND'S THEOREM. If $S$ is any finite set of clauses and $H$ its Herbrand universe, then $S$ is unsatisfiable if and only if some finite subset of $H(S)$ is unsatisfiable.
+
+\section{\emph{Saturation Procedures}}
+
+Is was noted in an earlier paper \cite{robinson_1963} that one can express Herbrand's Theorem in the following form:
+
+\newtheorem{theorem}{Theorem}
+\begin{theorem}
+If S is any finite set of clauses, then S Ls unsatisfiable if and only if, for some finite subset P of the Herbrand universe of S, P(S) is unsatisfiable. 
+\end{theorem}
+
+This version of Herbrand's Theorem suggests the following sort of refutation procedure, which we call a \emph{saturation procedure}: given a finite set $S$ of clauses, select a sequence $P_0, P_1, P_2, \dotsm ,$ of finite subsets of the Herbrand universe $H$ of $S$, such that $P_j \subseteq P_{j+1}$ for each $j\geqq$, and such that  $\cup_{j=0}^\infty P_j = H$. Then examine in turn the sets $P_0(S),P_1(S),P_2(S), \dotsm ,$ for satisfiability. Evidently, for any finite subset $P$ of $H$, $P \subseteq P_j$ for some $j$, and therefore $P(S) \subseteq P_j(S)$. Therefore, by Theorem 1, if $S$ is unsatisfiable then, for some $j$, $P_j(S)$ is unsatisfiable.
+
+Of course, any specific procedure of this sort must make the selection of \\$P_0, P_1, P_2,\dotsm$, uniformly for all finite sets of clauses. A  particularly natural way of doing this is to use the so-called levels $H_0, H_1, H2,\dotsm$, of the Herbrand universe $H$; where $H_0$ consists of all the individual constants in $H$, and $H_{n+1}$, for $n\geqq0$, consists of all the terms in $H$ which are in $H_n$, or whose arguments are in $H_n$. In \cite{robinson_1963} we called procedures using this method \emph{level-saturation procedures}. It, was there remarked that essentially the procedures of Gilmore \cite{gilmore_1960} and Davis Putnam \cite{davis_1960} are level-saturation procedures. 
+
+The major combinatorial obstacle to efficiency for level-saturation procedures is the enormous rate of growth of the finite sets $H_j$ and $H_j(S)$ as $j$ increases, at least for most interesting sets $S$. These growth rates were analyzed in some detail in \cite{robinson_1963}, and some examples were there given of some quite simple unsatisfiable S for which the earliest unsatisfiable  $H_j(S)$ is so large as to be absolutely beyond the limits of feasibility.
+
+An interesting heuristic remark is that, for every finite set $S$ of clauses which is unsatisfiable and which has a refutation one could possibly construct, there is at least one reasonably small finite subset of the Herbrand universe of $S$ such that $P(S)$ is unsatisfiable and such that $P$ is \emph{minimal} in the sense that $Q(S)$ is satisfiable for each proper subset $Q$ of $P$. Such a $P$ was called a \emph{proof set} for $S$ in \cite{robinson_1963}. If only, then, a benevolent and omniscient demon were available who could provide us, in reasonable time, with a proof set $P$ for each unsatisfiable finite set $S$ of clauses that we considered, we could simply arrange to saturate $S$ over $P$ and then extract a suitable refutation of $S$ from the resulting finite unsatisfiable set $P(S)$ of ground clauses. This was in fact the underlying scheme of a computer program reported in \cite{robinson_1963}, in which the part of the demon is played, as best his ingenuity allows, by the mathematician using the program. What is really
 
 \newpage
 
