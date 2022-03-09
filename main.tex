@@ -5,6 +5,7 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{mathrsfs}
 
 \geometry{
@@ -13,6 +14,25 @@
     left=0.90in,
     top=0.5in
 }
+
+%https://tex.stackexchange.com/a/53981
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+
+\newcustomtheorem{p5theorem}{Theorem}       %Page 5 Theorem 1
+\newcustomtheorem{grt}{}                    %Page 6 Ground Resolution Theorem
+\newcustomtheorem{p7theorem}{Theorem}       %Page 7 Theorem 2
+\newcustomtheorem{p7lemma}{Lemma}           %Page 7 Lemma
+\newcustomtheorem{p7corollary}{Corollary}   %Page 7 Corollary
 
 %TODO fix horizontal spacing of title
 \title{\textbf{ A Machine-Oriented Logic Based on the Resolution Principle}}
@@ -138,10 +158,9 @@ HERBRAND'S THEOREM. If $S$ is any finite set of clauses and $H$ its Herbrand uni
 
 Is was noted in an earlier paper \cite{robinson_1963} that one can express Herbrand's Theorem in the following form:
 
-\newtheorem{theorem}{Theorem}
-\begin{theorem}
+\begin{p5theorem}{1}\label{p5theorem}
 If S is any finite set of clauses, then S Ls unsatisfiable if and only if, for some finite subset P of the Herbrand universe of S, P(S) is unsatisfiable. 
-\end{theorem}
+\end{p5theorem}
 
 This version of Herbrand's Theorem suggests the following sort of refutation procedure, which we call a \emph{saturation procedure}: given a finite set $S$ of clauses, select a sequence $P_0, P_1, P_2, \dotsm ,$ of finite subsets of the Herbrand universe $H$ of $S$, such that $P_j \subseteq P_{j+1}$ for each $j\geqq$, and such that  $\cup_{j=0}^\infty P_j = H$. Then examine in turn the sets $P_0(S),P_1(S),P_2(S), \dotsm ,$ for satisfiability. Evidently, for any finite subset $P$ of $H$, $P \subseteq P_j$ for some $j$, and therefore $P(S) \subseteq P_j(S)$. Therefore, by Theorem 1, if $S$ is unsatisfiable then, for some $j$, $P_j(S)$ is unsatisfiable.
 
@@ -176,14 +195,57 @@ sequence:
 In view of the finite termination of the described process we can prove its
 correctness, as stated above, in the form of the ground resolution theorem. 
 
-\newtheorem{Ground Resolution Theorem}{Theorem}
-\begin{theorem}
+
+\begin{grt}{Ground Resolution Theorem}\label{grt}
 If $S$ is any finite set of ground clauses, then $S$ is unsatisfiable if and only if $\mathscr{R}^n(S)$ contains $\square$, for some $n\geqq O$. 
-\end{theorem}
+\end{grt}
 
 PROOF. The "if" part is immediate. To prove the "only if" part, let $T$ be the
 terminating set $\mathscr{R}^n(S)$ in the sequence (4.1) above, so that $T$ is closed under ground resolution. We need only show that if $T$ does not contain $\square$, then $T$ is satisfiable, and hence $S$ is satisfiable since $S$ $\subseteq$ $T$. Let $L_1, \dotsm , L_k$ be all the distinct atomic formulas which occur in $T$ or whose complements occur in $T$. Let $M$ be the model defined as follows: $M_0$ is the empty set; and for $0 < j \leq k$, $M_j$ is the set $M_{j-1} \cup {L_j}$, unless some clause in $T$ consists entirely of complements of literals in the set $M{j_1}\cup{\sim L_j}$. in which case $M_j$ is the set $M_{j-1}\cup{\sim L_j}$. Finally, $M$ is $M_k$. Now if $T$ does not contain $\square$, $M$ satisfies $T$. For otherwise there is a least $j$, $0 < j \leq k$, such that some clause (say, $C$) in $T$ consists entirely of complements of literals in the set $M_j$. By the definition of $M_j$, therefore, $M_j$ is $M_{j-1} \cup {\sim L_j}$. Hence by the leastness of $j$, $C$ contains $L_j$. But since $M_j$ is $M_{j-1}\cup {\sim L_j}$, there is some clause (say, $D$) in $T$ which consists entirely of complements of literals in the set $M{j_1}\cup {L_j}$. Hence by the leastness of $j$, $D$ contains $\sim L_j$. Then the clause $B = (C - {L_j}) \cup (D - {\sim L_j})$ consists entirely of complements of literals in the set $M_{j-1}$ , unless $B$ is $\square$. But $B$ is a
 
+\newpage
+
+ground resolvent of $C$ and $D$, hence is in $T$, hence is not $\square$. Thus the leastness of $j$ is contradicted and the theorem is proved.
+
+The Ground Resolution Theorem now allows us to state a more specific form
+of Theorem 1, namely,
+
+
+\begin{p7theorem}{2}\label{two}
+If $S$ is any finite set of clauses, then $S$ is unsatisfiable if and only
+if, jut some finite subset $P$ of the Herbrand universe of $S$, and some $n \geqq O$, $\mathscr{R}^n(P(S))$ contains $\square$.
+\end{p7theorem}
+
+It is now possible to state informally the essential steps of the remaining part of the development. We are going to generalize the notions of ground resolvent and ground resolution, respectively, to the notions of resolvent and resolution. by removing the restriction that the clauses involved be only ground clauses. Any two clauses will then have zero, one or more clauses as their resolvents, but in no case more than finitely many. In the special ease that $C$ and $D$ are ground clauses, their resolvents, if any, are precisely their ground resolvents as already defined. Similarly, the notations $\mathscr{R}(S), \mathscr{R}(S)$ will be retained, with $S$ allowed to be any set of clauses. $\mathscr{R}(S)$ will then denote the resolution of $S$, which
+is the set of clauses consisting of all members of $S$ together with all resolvents of all pairs of members of $S$. Again, $\mathscr{R}(S)$ is precisely the ground resolution of $S$, already defined, whenever $S$ happens to be a set of ground clauses. 
+
+The details of how this generalization is done must await the formal definitions in Section 5. However, an informal grasp of the general notion of resolution is obtainable now, prior to its exact treatment, from simply contemplating the fundamental property which it will be shown to possess: \emph{resolution is semicommutative with saturation.} More exactly, this property is as stated in the following basic Lemma, which is proved in Section 5:
+
+%TODO fix this free hanging period
+\begin{p7lemma}{}\label{p7lemma}
+If $S$ is any set of clauses, and $P$ is any subset of the Herbrand universe of $S$, then: $\mathscr{R}(P(S)) \subseteq P(\mathscr{R}(S))$.
+\end{p7lemma}
+
+The fact is, as will be shown here, that any ground clause which can be obtained by \emph{first} instantiating over P a pair $C$, $D$ of clauses in $S$, and \emph{then} forming a ground resolvent of the two resulting instances, cast also be obtained by instantiating over $P$ one of the finitely many resolvents of $C$ and $D$.
+
+It is an easy corollary of the basic Lemma that nth resolutions are also semicommutative with saturation: 
+
+\begin{p7corollary}{}\label{p7corollary}
+If $S$ is any set of clauses and $P$ is any subset of the Herbrand
+universe of $S$, then: $\mathscr{R}^n(P(S)) \subseteq P(\mathscr{R}^n(S))$ for all $n \geqq O$.
+\end{p7corollary}
+
+%https://tex.stackexchange.com/a/27284
+\begin{proof}
+    By induction on $n$. $\mathscr{R}^0(P(S)) = P(S) = P(\mathscr{R}^0(S))$, so that the case $n = 0$ is trivial. And if, for $n \geqq 0$, $\mathscr{R^n}(P(S)) \subseteq P(\mathscr{R}^n(S))$, then:
+    \begin{align*}
+        \mathscr{R}^{n+1}(P(S)) &= \mathscr{R}(\mathscr{R}^n(P(S))) && \text{by definition of $\mathscr{R}^{n+1}$}\\
+                                &\subseteq \mathscr{R}(P(\mathscr{R}^n(S))) && \text{by the induction hypothesis, as $\mathscr{R}$ preserves inclusion,}\\
+                                &\subseteq P(\mathscr{R}(\mathscr{R}^n(S))) && \text{by the Lemma,}\\
+                                &= P(\mathscr{R}^{n+1}(S)) && \text{by definition of $\mathscr{R}^{n+1}$,}
+    \end{align*}
+\end{proof}
+\noindent and the Corollary is proved.
 \newpage
 
 TODO REMOVE
