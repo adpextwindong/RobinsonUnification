@@ -481,6 +481,62 @@ THE SCAN OF THIS PAGE IS CUT OFF ON THE RIGHT SIDE
 $\theta = \sigma_k\lambda_k$
 
 \newpage
+\noindent
+bets, or complements of members, of the set $L\xi_c \cup M_{\eta_D}$. Hence by the Unification Theorem $N$ has a most general unifier $\sigma_N$, and there is a substitution $\lambda$ over $P$ such that $\theta = \sigma_N\lambda$ Hence $L\xi_{C sigma_N}\lambda = L\alpha$ and $M_{\eta D\sigma_N} = M\beta$, and therefore $L\xi_{C\sigma_N}$ and $M_{\eta_D\sigma N}$ are singletons whose members are complements. It follows that $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$, and hence that the clause
+
+\begin{align*}
+    B = (C - L)\xi_{C\sigma_N} \cup (D - M)_{\eta D\sigma N}
+\end{align*}
+
+is a resolvent of $C$ and $D$; hence $B \in \mathscr{R}(S)$. But since $\theta = \sigma_N\lambda$, it follows by (5.5.4) that $A = B\lambda$ and therefore that $A \in P(\mathscr{R}(S))$. The proof is complete.
+
+The hypotheses of the Lemma do not entail the opposite inclusion $P(\mathscr{R}(S)) \subseteq \mathscr{R}(P(S))$. As a simple counter example, consider:
+
+\begin{align*}
+    S = \{\{Q(x,f(y))\},\{\sim Q(g(y),x)\}\}, && P = \{a\}.
+\end{align*}
+
+A short investigation shows that $P(\mathscr{R}(S))$ contains $\square$ (since $\mathscr{R}(S)$ does while $\mathscr{R}P(S))$ does not. Thus $S$ is unsatisfiable, but $P$ is not a proof set for $S$.
+
+\subsection{The Resolution Principle: Refutations}
+
+The single inference principle of our system of logic, mentioned ia Section l,
+is the \emph{resolution principle}, namely: \emph{From any two clauses $C$ and $D$, one may infer a resolvent of $C$ and $D$.}
+
+By a \emph{refutation} of the set $S$ of clauses we mean a finite sequence $B_1,\dotsm,B_n$ of clauses such that (a) each $B_i, 1 \leq i \leq n$ is either in $S$ or is a resolvent of two earlier clauses in the sequence, and (b) $B_n$ is $\square$
+
+it is immediate from the Resolution Theorem that a finite set $S$ of clauses is
+unsatisfiable if and only if there is a refutation of $S$. Thus the Resolution Theorem is the completeness theorem for our system of logic. 
+
+Two examples of refutations will illustrate the workings of the system. 
+
+%TODO fix indentation
+\begin{enumerate}[label=Example \arabic*.]
+    \item The set containing just the two clauses $C_1$ and $C_2$, where
+        \begin{align*}
+            C_1 &= \{Q(x,g(x),y,h(x,y),z,k(x,y,z)\}\\
+            C_2 &= \{\sim Q(u,v,e(v),w,f(v,w),x)\}
+        \end{align*}
+\end{enumerate}
+\noindent
+has the refutation $C_1, C_2, \square$. Note that $\langle C_1, C_2\rangle$ has the key triple $\langle C_1, C_2, N\rangle$, where $N$ is the set
+
+\begin{align*}
+    \{Q(x_1,g(x_1),x_2,h(x_1,x_2),x_3,k(x_1,x_2,x_3)),
+    Q(y_1,y_2,e(y_2),y_3,f(y_2,y_3),y_4)\}
+\end{align*}
+\noindent
+The reader can verify in a few minutes of computation with the Unification
+Algorithm that $\sigma_N$ is the substitution with the components: 
+
+\begin{align*}
+    y_1/x_1,      &  h(y_1,e(g(y_1)))/y_2\\
+    g(y_1)/y_2,   &  f(g(y1), h(y_1, e(g(y_1))))/x_3
+    e(g(y_1))/x_2 &  k(y_1, e(g(y_1)), f(g(y_1), h(y_1, e(g(y_1)))))/y_4
+\end{align*}
+
+\noindent
+and that then $C_1\xi_{C_1\sigma_N}$ and $C_{2\eta C_2\sigma_N}$ are singletons whose members are complements.
 
 \newpage
 
