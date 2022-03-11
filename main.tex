@@ -660,6 +660,39 @@ member of $M$. But every ground instance $D\lambda$ of $D$ includes the ground i
 \end{proof}
 
 \newpage
+The \emph{subsumption principle} is then simply the following: \emph{One may delete, from a
+finite set $S$ of clauses, any clause $D$ which is subsumed by a clause in $S - \{D\}$.}
+
+In order to make the subsumption principle available for incorporation into a 
+refutation procedure, we must give an algorithm for deciding whether one clause $C$ 
+subsumes another clause $D$. Such an algorithm is following the Subsumption Algorithm:
+
+\begin{steps}
+    \item Let $V_1,\dotsm,V_m$ be all the distinct variables, in alphabetical order, of $D$. Let $J_1,\dotsm,J_m$ be distinct individual constants, none of which occur in $C$ or $D$. Let $\theta = \{J_1/V_1,\dotsm,J_m/V_m\}$. Compute $D\theta$ and go to step 2.
+    \item Set $A_0 = \{C\}, k = 0$, and go to step 3.
+    \item If $A_k$ does not contain $\square$, let $A_{k+1}$ be the set of all clauses of the form $(K\sigma_N - M\sigma_N$, where $K \in A_k, M\subseteq K, N = M \cup \{P\}$, for some $P \in D\theta$, and $N$ is most generally unifiable with most general unifier $\sigma_N$; and go to step 4. Otherwise, terminate.
+    \item If $A_{k+1}$ is nonempty, add $1$ to $k$ and return to step 3. Otherwise, terminate.
+\end{steps}
+
+That this is an algorithm is clear from the fact that each clause in $A_{k+1}$ is smaller, by at least one literal, than the clause in $A_k$, from which it was obtained. Hence, since the only clause in $A_0$ has but finitely many literals, the sequence $A_0, A_1,\dotsm$, must eventually contain a set which contains $\square$ or is empty. 
+
+That the Subsumption Algorithm is correct is shown by the following argument that it terminates in step 3 if and only if $C$ subsumes $D$.
+
+If $C$ subsumes $D$, then $C\sigma\subseteq D$ for some $\sigma$. Hence $C\sigma\theta\subseteq D\theta$ Hence $C\mu\subseteq D\theta$, for some $\mu$. Now assume, for $k\geqq 0$, that $K \in A_k$ and that, for some $\mu$, $K\mu\subseteq D\theta$. If $K$ is not $\square$, let $P$ be a literal in $K_\mu \cap D\theta$. Then there is an $M \subseteq K$ such that $N = (M\cup\{P\})$ is unified by $\mu$. Therefore by the Unification Theorem $N$ has a most general unifier $\sigma_N$, and the clause $G = (K\sigma_N - M\sigma_N)$ is in $A_{k+1}$ But by the Unification Theorem $\mu = \sigma_N\lambda$, for some $\lambda$, hence $K\sigma_N\lambda\subseteq D\theta$. Therefore $G\lambda\subseteq D\theta$. Since $C \in A_0$, this shows that each $A_k, k\geqq 0$, either contains $\square$ or is nonempty. Hence the Subsumption Algorithm does not terminate in step 4. Therefore it terminates in step 3.
+
+If the Subsumption Algorithm terminates in step 3, for $C$ and $D$ as input, then there is a finite sequence
+$C_0,C_1,\dotsm,C_{n+1}$ of clauses such that $C_0 = C, C_{n+1} = \square$, and for $0\leq j \leq n, C_{j+1} = C_{j\sigma j} - M_{j\sigma j}$, where $M_j\subseteq C_j$, and $\sigma_j$ is the most general unifier of $M_j \cup\{P\}$, where $P\in D\theta$. It follows that (since $M_{j\sigma j}$ contains no variables, $0\leq j\leq n$) we have
+\begin{align*}
+    C_{n+1} = \square = C_{\sigma \theta \sigma 1}\dotsm \sigma_n - M_{0\sigma0} - M_{1\sigma 1} - \dotsm - M_{n\sigma n}
+\end{align*}
+\noindent
+i.e. that $C_{\sigma 0\sigma 1}\dotsm\sigma_n\subseteq(M_{0\sigma 0}\cup M_{1\sigma 1}\cup\dotsm\cup M_{n\sigma n})\subseteq D\theta$. Hence, for some $\lambda, C\lambda\subseteq D\theta$. Let $\sigma$ be the substitution obtained from $\lambda$ by the replacement, in each component of $\lambda$ of $J_i$ by $V_i$, for $1\leq i\leq m$. Then $C\sigma\subseteq D$.
+
+A particularly useful application of the subsumption principle is the following: Suppose a resolvent $R$ of $C$ and $D$ subsumes one of $C$, $D$; then in adding 
+$R$ by the resolution principle we may simultaneously delete, by the subsumption principle, that one of $C$, $D$ which $R$ subsumes. This combined operation 
+amounts to replacing $C$ or $D$ by $R$; accordingly we name the principle involved the \emph{replacement principle}.
+
+\newpage
 
 TODO fix all set braces
 
