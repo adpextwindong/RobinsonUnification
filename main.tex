@@ -540,6 +540,52 @@ and that then $C_1\xi_{C_1\sigma_N}$ and $C_{2\eta C_2\sigma_N}$ are singletons 
 
 \newpage
 
+This example illustrates the way in which a proof set is automatically computed as a by-product; of the resolution operation. The terms of the above substitution components become those of a proof set for $\{C_1 , C_2\}$ when the variable $y_1$ is replaced throughout by any term of the Herbrand universe of $\{C_1, C_2\}$, e.g. by the individual constant \"a.\" It is interesting to note that the earliest level of this Herbrand universe $H$ to include such a proof set is $H_5$, which has of the order of $10^64$ members. Consequently $H_5(\{C_1, C_2\})$ has of the order of $10^256$ members. A level-saturation procedure would not find this example feasible.
+
+\begin{enumerate}[label=Example \arabic*.]
+    \setcounter{enumi}{1}
+    \item A more interesting example is one which was discussed in \cite{robinson_1963}. It arises from the following algebraic problem.
+    
+    \emph{Prove that in any associative system which has left and right solutions $x$ and $y$ for all equations $x*a = b$ and $a * y = b$, there is a right identity element.}
+    
+    To formalize this problem i~ our logic, we deny the alleged conclusion, and try to refute the set containing the clauses (where $Q(x,y,z)$ is to mean $x*y = z$):
+    
+    %TODO fix the associativity brace not spanning C_1 C_2 see page 14
+    \begin{align*}
+        C_1 : && \{\sim Q(x,y,u), \sim Q(y,z,v), \sim Q(x,v,w), Q(u,z,w)\} && \text{Associativity} \\
+        C_2 : && \{\sim Q(x,y,u), \sim Q(y,z,v), \sim Q(u,z,w), Q(x,v,w)\} && \text{Associativity} \\
+        C_3 : && \{Q(g(x,y),x,y)\} && \text{Existence of left and right} \\
+        C_4 : && \{Q(x, h(x,y), y)\} && \text{solutions} \\
+        C_5 : && \{Q(x,y, f(x,y))\} && \text{Closure under *} \\
+        C_6 : && \{\sim Q(k(x), x, k(x))\} && \text{No right identity.} \\ \\
+        && \text{By adding the following resolvents, we get a refutation:} && \\ \\
+        C_7 : && \{\sim Q(y_1, x_6, y_1), Q(y_2, x_6, y_2)\} && \\
+        C_8 : && \{\sim Q(y_1, y_2, y_1)\} && \\
+        C_9 : && \square &&
+    \end{align*}
+\end{enumerate}
+
+\emph{Commentary.} $C_7$ is the resolvent of the pair $\langle C_1, C_3\rangle$ for the key triple
+
+\begin{align*}
+    \langle\{\sim Q(x,y,u), \sim Q(x,v,w)\}, \{ Q(g(x,y), x, y)\}, N\rangle
+\end{align*}
+\noindent
+where $N$ is the set $\{Q(x_4, x_5, x_1), Q(x_4,x_2,x_3), Q(g(y_1,y_2),y_1,y_2)\}.$ The $\sigma_N$ computed for this $N$ by the Unification Algorithm is
+
+\begin{align*}
+    \{y_2/x_1, y_1/x_2, y_2/x_3, g(y_1, y_2)/x_4, y_1/x_5\},
+\end{align*}
+\noindent
+as is easily verified. $C_8$ is the only resolvent of $\langle C_6, C_7\rangle$, and $\square$ is the only resolvent of $\langle C_4, C_8\rangle$.
+
+This example illustrates the way in which the single steps in a refutation made with the resolution principle go beyond, in their complexity, the capacity of the human mind to apprehend their correctness in one single intellectual act. By taking larger bites, so to speak, the resolution principle in this ease permits a very compact, not to say elegant, piece of reasoning. $C_2$ and $C_5$ are not used as premisses in the refutations, although this has nothing to do with the resolution principle. Hence a nonredundant refutation for this example is the sequence: $C_1, C_3, C_4, C_6, C_7, C_8, \square$.
+
+\newpage
+
+
+\newpage
+
 TODO fix all set braces
 
 TODO REMOVE
