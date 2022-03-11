@@ -144,7 +144,7 @@ In writing well-formed expressions for illustrative purposes, we follow the more
 \newpage
 \noindent enclosing the members in a pair of braces and of separating the members by commas, with the understanding that the order of writing the members in immaterial.
 
-\subsection{Herbrand universes}. With any set $S$ of clauses there is associated a set of ground terms called the Herbrand universe of $S$, as follows: let $F$ be the set of all function symbols which occur in $S$. If $F$ contains any function symbols of degree 0, the functional vocabulary of $S$ is $F$; otherwise it is the set ${a}\cup F$. The Herbrand universe of $S$ is then the set of all ground terms in which there occur only symbols in the functional vocabulary of $S$.
+\subsection{Herbrand universes}. With any set $S$ of clauses there is associated a set of ground terms called the Herbrand universe of $S$, as follows: let $F$ be the set of all function symbols which occur in $S$. If $F$ contains any function symbols of degree 0, the functional vocabulary of $S$ is $F$; otherwise it is the set $\{a\}\cup F$. The Herbrand universe of $S$ is then the set of all ground terms in which there occur only symbols in the functional vocabulary of $S$.
 
 \subsection{Saturation}. If $S$ is any set of clauses and $P$ is any set of terms, then by $P(S)$ we denote the saturation of $S$ over $P$, which is the set of all ground clauses obtainable from members of $S$ by replacing variables with members of P-occurrences of the same variable in any one clause being replaced by occurrences of the same term.
 
@@ -156,7 +156,7 @@ From the definition of satisfiability, it is clear that any set of clauses which
 
 \subsection{Ground resolvents}. If $C$ and $D$ are two ground clauses, and $L\subseteq C,M\subseteq D$ are two singletons (unit sets) whose respective members form a complementary pair, then the ground clause: $(C - L)\cup (D - M)$ is called a ground resolvent of $C$ and $D$.
 
-Evidently any model of ${C,D}$ is also a model of ${C,D,R}$, where $R$ is a ground resolvent of $C$ and $D$. Not all pairs of ground clauses have ground resolvents, and some have more than one; but in no case, as is clear from the definitions, can two ground clauses have more than a finite number of ground resolvents.
+Evidently any model of $\{C,D\}$ is also a model of $\{C,D,R\}$, where $R$ is a ground resolvent of $C$ and $D$. Not all pairs of ground clauses have ground resolvents, and some have more than one; but in no case, as is clear from the definitions, can two ground clauses have more than a finite number of ground resolvents.
 
 \subsection{Ground resolution}. If $S$ is any set of ground clauses, then the ground resolution of $S$, denoted by $\mathscr{R}(S)$, is the set of ground clauses consisting of the members of $S$ together with all ground resolvents of all pairs of members of $S$.
 
@@ -219,7 +219,7 @@ If $S$ is any finite set of ground clauses, then $S$ is unsatisfiable if and onl
 \end{grt}
 
 PROOF. The "if" part is immediate. To prove the "only if" part, let $T$ be the
-terminating set $\mathscr{R}^n(S)$ in the sequence (4.1) above, so that $T$ is closed under ground resolution. We need only show that if $T$ does not contain $\square$, then $T$ is satisfiable, and hence $S$ is satisfiable since $S$ $\subseteq$ $T$. Let $L_1, \dotsm , L_k$ be all the distinct atomic formulas which occur in $T$ or whose complements occur in $T$. Let $M$ be the model defined as follows: $M_0$ is the empty set; and for $0 < j \leq k$, $M_j$ is the set $M_{j-1} \cup {L_j}$, unless some clause in $T$ consists entirely of complements of literals in the set $M{j_1}\cup{\sim L_j}$. in which case $M_j$ is the set $M_{j-1}\cup{\sim L_j}$. Finally, $M$ is $M_k$. Now if $T$ does not contain $\square$, $M$ satisfies $T$. For otherwise there is a least $j$, $0 < j \leq k$, such that some clause (say, $C$) in $T$ consists entirely of complements of literals in the set $M_j$. By the definition of $M_j$, therefore, $M_j$ is $M_{j-1} \cup {\sim L_j}$. Hence by the leastness of $j$, $C$ contains $L_j$. But since $M_j$ is $M_{j-1}\cup {\sim L_j}$, there is some clause (say, $D$) in $T$ which consists entirely of complements of literals in the set $M{j_1}\cup {L_j}$. Hence by the leastness of $j$, $D$ contains $\sim L_j$. Then the clause $B = (C - {L_j}) \cup (D - {\sim L_j})$ consists entirely of complements of literals in the set $M_{j-1}$ , unless $B$ is $\square$. But $B$ is a
+terminating set $\mathscr{R}^n(S)$ in the sequence (4.1) above, so that $T$ is closed under ground resolution. We need only show that if $T$ does not contain $\square$, then $T$ is satisfiable, and hence $S$ is satisfiable since $S$ $\subseteq$ $T$. Let $L_1, \dotsm , L_k$ be all the distinct atomic formulas which occur in $T$ or whose complements occur in $T$. Let $M$ be the model defined as follows: $M_0$ is the empty set; and for $0 < j \leq k$, $M_j$ is the set $M_{j-1} \cup \{L_j\}$, unless some clause in $T$ consists entirely of complements of literals in the set $M{j_1}\cup\{\sim L_j\}$. in which case $M_j$ is the set $M_{j-1}\cup\{\sim L_j\}$. Finally, $M$ is $M_k$. Now if $T$ does not contain $\square$, $M$ satisfies $T$. For otherwise there is a least $j$, $0 < j \leq k$, such that some clause (say, $C$) in $T$ consists entirely of complements of literals in the set $M_j$. By the definition of $M_j$, therefore, $M_j$ is $M_{j-1} \cup \{\sim L_j\}$. Hence by the leastness of $j$, $C$ contains $L_j$. But since $M_j$ is $M_{j-1}\cup \{\sim L_j\}$, there is some clause (say, $D$) in $T$ which consists entirely of complements of literals in the set $M{j_1}\cup \{L_j\}$. Hence by the leastness of $j$, $D$ contains $\sim L_j$. Then the clause $B = (C - \{L_j\}) \cup (D - \{\sim L_j\})$ consists entirely of complements of literals in the set $M_{j-1}$ , unless $B$ is $\square$. But $B$ is a
 
 \newpage
 
@@ -313,7 +313,7 @@ called the \emph{variable} of the component $T/V$, and $T$ is called the \emph{t
 \subsection{Substitutions.}
 
 A substitution is any finite set (possibly empty) of substitution components none of the variables of which are the same. If $P$ is any set;
-of terms, and the terms of the components of the substitution $\theta$ are all in $P$, we say" that $\theta$ is a substitution over $P$. We write the substitution whose components are $T_1/V_1, \dotsm , T_k/V_k as \{T_1/V_1, \dotsm, T_k/V_k\}$, with the understanding that the order of the components is immaterial. We use lowercase Greek letters to denote substitutions. In particular, $\epsilon$ is the \emph{empty substitution}.
+of terms, and the terms of the components of the substitution $\theta$ are all in $P$, we say" that $\theta$ is a substitution over $P$. We write the substitution whose components are $T_1/V_1, \dotsm , T_k/V_k$ as $\{T_1/V_1, \dotsm, T_k/V_k\}$, with the understanding that the order of the components is immaterial. We use lowercase Greek letters to denote substitutions. In particular, $\epsilon$ is the \emph{empty substitution}.
 
 \subsection{Instantiation.}
 
@@ -332,7 +332,7 @@ string $E$. If $C$ is any set of strings and $\theta$ a substitution, then the i
 If $C$ is any finite set of strings, and $V_1, \dotsm , V_k$ are
 all the distinct variables, in alphabetical order, which occur in strings in $C$, then
 the $x$-standardization of $C$, denoted by $\xi_c$, is the substitution
-$x_1/V_1,\dotsm,x_k/V_k$
+$\{x_1/V_1,\dotsm,x_k/V_k\}$
 and the $y$-standardization of $C$, denoted by $\eta_c$, is the substitution
 \begin{align*}
     \{y_1/V_1,\dotsm,y_k/V_k\}
@@ -343,7 +343,7 @@ and the $y$-standardization of $C$, denoted by $\eta_c$, is the substitution
 If $\theta = \{T_1/V_1,\dotsm T_k/V_k\}$ and $\lambda$ are any
 two substitutions, then the set $\theta^\prime \cup \lambda^\prime$ ,where $\lambda^\prime$ is the set of all components of $\lambda$
 whose variables are not among $V_1,\dotsm V_k$, and $\theta^\prime$ is the set of all components
-$T_i\lambda/V_i, 1 \leq i \leq k$, such taht $T_i\lambda$ is different from $V_i$, is called the composition of $\theta$ and $\lambda$, and is denoted by $\theta\lambda$
+$T_i\lambda/V_i, 1 \leq i \leq k$, such that $T_i\lambda$ is different from $V_i$, is called the composition of $\theta$ and $\lambda$, and is denoted by $\theta\lambda$
 
 It is straight forward to verify that $\epsilon\theta = \theta\epsilon = \theta$ for any substitution $\theta$. Also,
 composition of substitutions enjoys the associative property $(\theta\lambda)\mu = \theta(\lambda\mu)$, so
@@ -437,15 +437,15 @@ $L$ and $M$ are nonempty, and $L \subseteq C, M \subseteq D$
 $N$ is the set of atomic formulas which are members, or complements
 of members, of the set $L\xi_c\cup M\eta_d$ (cf. definition (5.4)).
 \subsubsection{}
-$N$ is most generally unifiable, with most general unifier $\sigma N$.
+$N$ is most generally unifiable, with most general unifier $\sigma _N$.
 \subsubsection{}
-The sets $L\xi_{c\sigma_N}$ and $M_{\eta_d\sigma_N}$ are singletons whose members are complements.
+The sets $L\xi_c\sigma_N$ and $M\eta_d\sigma_N$ are singletons whose members are complements.
 
 Evidently, a pair $\langle C, D\rangle$ of clauses has at most a finite number of key triples, and possibly none at all.
 
 \subsection{Resolvents.}
 A resolvent of the two clauses $C$ and $D$ is any clause of the
-form: $(C - L)\xi_{c\sigma_N} \cup (D - M)_{\eta_D\sigma_N}$ where $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$.
+form: $(C - L)\xi_c\sigma_N \cup (D - M)\eta_D\sigma_N$ where $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$.
 By the remark following definition (5.10) it is dear that two clauses $C$ and $D$ can have at most finitely many resolvents, and possibly none at all.
 
 \subsection{Resolutions.}
@@ -483,10 +483,10 @@ $\theta = \sigma_k\lambda_k$
 
 \newpage
 \noindent
-bets, or complements of members, of the set $L\xi_c \cup M_{\eta_D}$. Hence by the Unification Theorem $N$ has a most general unifier $\sigma_N$, and there is a substitution $\lambda$ over $P$ such that $\theta = \sigma_N\lambda$ Hence $L\xi_{C sigma_N}\lambda = L\alpha$ and $M_{\eta D\sigma_N} = M\beta$, and therefore $L\xi_{C\sigma_N}$ and $M_{\eta_D\sigma N}$ are singletons whose members are complements. It follows that $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$, and hence that the clause
+bets, or complements of members, of the set $L\xi_c \cup M\eta_D$. Hence by the Unification Theorem $N$ has a most general unifier $\sigma_N$, and there is a substitution $\lambda$ over $P$ such that $\theta = \sigma_N\lambda$ Hence $L\xi_C \sigma_N\lambda = L\alpha$ and $M\eta _D\sigma_N = M\beta$, and therefore $L\xi_C\sigma_N$ and $M\eta_D\sigma_N$ are singletons whose members are complements. It follows that $\langle L, M, N\rangle$ is a key triple of $\langle C, D\rangle$, and hence that the clause
 
 \begin{align*}
-    B = (C - L)\xi_{C\sigma_N} \cup (D - M)_{\eta D\sigma N}
+    B = (C - L)\xi_C\sigma_N \cup (D - M)\eta D\sigma_N
 \end{align*}
 
 is a resolvent of $C$ and $D$; hence $B \in \mathscr{R}(S)$. But since $\theta = \sigma_N\lambda$, it follows by (5.5.4) that $A = B\lambda$ and therefore that $A \in P(\mathscr{R}(S))$. The proof is complete.
