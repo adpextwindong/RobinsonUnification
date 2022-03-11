@@ -619,6 +619,47 @@ of all complements of members of $N$. Then the set $P = N \cup (A - K)$ is a
 \end{proof}
 
 \newpage
+model; moreover it is a model $S$, since every clause in $H(\{C\})$ contains a member of $P$ (namely a member of $N$), and every clause in $H(S - \{C\}$ contains a member of $P$, namely a member of $A - K$; for no clause in $H(S - \{C\}$ contains a member of $K$, since otherwise, if $D\beta$ were, such a clause, with $D \in S - \{C\}$, then there would be an $M\subseteq D$ such that $M\beta$ would be a singleton containing a member of $K$. Then there would be some substitution $a$ over $H$ such that $\{L\}\alpha, M\beta$ contained complementary singletons. Hence by the same argument as in the proof of the Lemma, there would be a key triple $\langle\{L\}, M, N\rangle$ 
+of the pair $\langle C,D\rangle$, contradicting the purity of $L$ in $S$. The theorem is proved.
+
+The \emph{purity principle} is then simply the following: \emph{One may delete, from a finite set $S$ of clauses, any clause containing a literal which is pure in $S$.}
+
+When $S$ is the little Peano example given earlier, i.e., is the set containing just the two clauses
+
+\begin{align*}
+    C_1 : \{Q(a)\}, && C_2 : \{\sim Q(x), \underline{Q(f(x))}\}.
+\end{align*}
+
+we see that the underlined literal in $C_2$ is pure in S. Hence we may delete C2, obtaining the set $S - {C_2}$ whose only clause is
+
+\begin{align*}
+    C_1 : \{\underline{Q(a)}\}.
+\end{align*}
+
+But of course the underlined literal is, trivially, pure in $S - \{C_2\}$; hence we may delete $C_1$, obtaining the set $S - \{C_1\} - \{C_2\}$, which is empty, hence satisfiable. Hence by the Purity Theorem, $S$ is satisfiable. 
+
+Thus a refutation procedure incorporating the purity principle as well as the resolution principle "converges" for more finite sets of clauses than a procedure based on the resolution principle alone. Such principles as the purity principle we call \emph{search principles} to distinguish them from inference principles.
+
+There is another search principle which, though not increasing the range of convergence, does help to increase the rate of convergence, of refutation procedures. We call this principle the \emph{subsumption principle} and base it on the following definition.
+
+\subsection{Subsumption}
+If $C$ and $D$ are two distinct nonempty clauses, we say 
+that $C$ subsumes $D$ just in case there is a substitution $\sigma$ such that $C\sigma\subseteq D$.
+
+The following theorem establishes the basic property of subsumption. 
+
+\newcustomtheorem{p16theorem}{}
+\begin{p16theorem}{Subsumption Theorem}
+If $S$ is any finite set of clause. and $D$ is any clause in $S$ which is subsumed by some clause in $S - \{D\}$, then $S$ is satisfiable if and only if $S - \{D\}$ is satisfiable.
+\end{p16theorem}
+\begin{proof}
+We need only show that if $M$ is a model of $S - \{D\}$, then $M$ is a model of $S$. Let $M$ be a model of $S - \{D\}$, and suppose that $C \in S - \{D\}$ subsumes $D$. Then there is a substitution $\sigma$ such that $C\sigma\subseteq D$. Since $D \in S$, the 
+terms of the components of $\sigma$ must be formed from function symbols in the functional vocabulary of $S$, together possibly with variables. Hence every ground instance of $C\sigma$ over $H$ is a ground instance of $C$ over $H$, and hence contains a 
+member of $M$. But every ground instance $D\lambda$ of $D$ includes the ground instance $C\sigma\lambda$ of $C$, and hence contains a member of $M$. So $M$ is a model of $S$ and the theorem is proved. 
+
+\end{proof}
+
+\newpage
 
 TODO fix all set braces
 
