@@ -6,7 +6,7 @@ The [pdfs](http://web.stanford.edu/class/linguist289/robinson65.pdf) avalible [o
 
 ## Missing
 
-Page 12 on the linked pdf's is slightly cut off on the right side. Currently that typeseting has been postponed until I can find a better scan.
+[Page 12](https://web.stanford.edu/class/linguist289/robinson65.pdf#page=12) on the [linked pdf](http://ropas.snu.ac.kr/lib/dock/Ro1965.pdf#page=12)'s is slightly cut off on the right side. Currently that typeseting has been postponed until I can find a better scan.
 
 ## Contributing
 
