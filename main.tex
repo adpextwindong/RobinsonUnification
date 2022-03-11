@@ -48,6 +48,7 @@
 \newcustomtheorem{pg8theorem3}{Theorem}     %Page 8 Theorem 3
 \newcustomtheorem{pg8rt}{Resolution Theorem}%Page 8 Resolution Theorem
 \newcustomtheorem{unificationTheorem}{}     %Page 11 Unification Theorem
+\newcustomtheorem{p15theorem}{}             %Page 15 Purity Theorem
 
 %TODO fix horizontal spacing of title
 \title{\textbf{ A Machine-Oriented Logic Based on the Resolution Principle}}
@@ -431,7 +432,7 @@ The ordered triple $\langle L, M, N \rangle$ of finite sets of literals is said
 to be a key triple of the ordered pair $\langle C,D\rangle$ of clauses just in case the following conditions are satisfied.
 
 \subsubsection{}
-$L$ and $M$ are noempty, and $L \subseteq C, M \subseteq D$
+$L$ and $M$ are nonempty, and $L \subseteq C, M \subseteq D$
 \subsubsection{}
 $N$ is the set of atomic formulas which are members, or complements
 of members, of the set $L\xi_c\cup M\eta_d$ (cf. definition (5.4)).
@@ -498,7 +499,7 @@ The hypotheses of the Lemma do not entail the opposite inclusion $P(\mathscr{R}(
 
 A short investigation shows that $P(\mathscr{R}(S))$ contains $\square$ (since $\mathscr{R}(S)$ does while $\mathscr{R}P(S))$ does not. Thus $S$ is unsatisfiable, but $P$ is not a proof set for $S$.
 
-\subsection{The Resolution Principle: Refutations}
+\section{The Resolution Principle: Refutations}
 
 The single inference principle of our system of logic, mentioned ia Section l,
 is the \emph{resolution principle}, namely: \emph{From any two clauses $C$ and $D$, one may infer a resolvent of $C$ and $D$.}
@@ -583,6 +584,39 @@ This example illustrates the way in which the single steps in a refutation made 
 
 \newpage
 
+\section{Refutation Procedures, Search Principles}
+
+The foregoing discussion was intended only to establish the theoretical framework, in the form of a special system of logic, for the design of theorem-proving programs, i.e. in the present case, refutation procedures. No attempt has been made thus far to discuss the question of developing efficient refutation procedures, and in this final section of the paper we briefly discuss this question. 
+
+The raw implementation of the Resolution Theorem would produce a very 
+inefficient refutation procedure, namely, the procedure would consist of computing, given the finite set $S$ of clauses as input, the sequence of sets $S, \mathscr{R}(S), \mathscr{R}^2(S),\dotsm,$ until one is encountered, say, $\mathscr{R}^n(S)$, which either contains $\square$ or else does not contain $\square$ but is equal to its successor $\mathscr{R}^{n+1}(S)$. In the former case, a refutation of $S$ is obtained by tracing back the genesis of $\square$; in the latter case the conclusion is that $S$ is satisfiable. By Church's Theorem \cite{church_1936} we know that for some inputs $S$ this procedure, and in general all correct refutation procedures, will not terminate in either of these two ways but will continue computing indefinitely. 
+
+In some cases we can foresee the nonterminating behavior. Consider the example of the set $S$ whose members are:
+
+\begin{align*}
+    C_1 : \{Q(a)\}, && C_2 : \{\sim Q(x), Q(f(x))\}.
+\end{align*}
+\noindent
+(The reader will recognize this as the formulation, in our logic, of a fragment of Peano's postulates for the natural numbers, with "$Q(x)$" for "$x$ is a natural number," "$a$" for "$0$," and "$f(x)$" for "the successor of $x$".) It is easy to see that for this $S$ the procedure described above would generate successively the resolvents\\$\{Q(f(a))\},\{Q(f(f(a)))\},\{Q(f(f(f(a))))\},\dotsm$, etc., \emph{ad infinitum}.
+
+This example suggests out" attempting to formulate a principle which would 
+allow us effectively to recognize the particular indefinite continuation phenomenon which it exhibits, so that we might incorporate the principle into a refutation procedure and cause it to terminate for this $S$ and for other similar examples. Such a principle, which we call the \emph{purity principle}, is available, based on the notion of a literal being pure in a set $S$ of clauses. We define this notion as follows.
+
+\subsection{Pure literals.}
+If $S$ is any finite set of clauses, $C$ a clause in $S$, and $L$ a literal in $C$ with the property that there is no key triple $\langle\{L\}, M, N\rangle$ for any pair $\langle C,D\rangle$ of clauses, where $D$ is any clause in $S - \{C\}$, then $L$ is said to be pure in $S$.
+
+The purity principle is then based on the following theorem. 
+
+\begin{p15theorem}{Purity Theorem}
+If $S$ is any finite set of clauses, and $L\in C\in S$ is a literal which is pure in $S$, then $S$ is satisfiable if and only if $S - \{C\}$ is satisfiable.
+\end{p15theorem}
+\begin{proof}
+If $S$ is satisfiable then so is $S - \{C\}$ since it is a subset of $S$. If $S - \{C\}$
+is satisfiable, then there is a model $A$ of $S - \{C\}$, every literal in which occurs 
+in some clause of $H(S)$, where $H$ is the Herbrand universe of $S$. Let $N$ be the 
+set of all ground literals $L\theta$, where $\theta$ ks a substitution over $H$, and let $K$ consist 
+of all complements of members of $N$. Then the set $P = N \cup (A - K)$ is a
+\end{proof}
 
 \newpage
 
