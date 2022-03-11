@@ -694,6 +694,37 @@ amounts to replacing $C$ or $D$ by $R$; accordingly we name the principle involv
 
 \newpage
 
+The following example, used by Gilmore \cite{gilmore_1960}, Davis-Putnam \cite{davis_1960} and Friedman \cite{friedman_1963}, illustrates the utility of these search principles in speeding up convergence.\\
+\noindent
+Consider the set S whose members are: 
+%TODO align left
+\begin{align*}
+    & C_1 : && \underbrace{\{P(x_1,x_2)}_{(6)} \\
+    & C_2 : && \{\underbrace{\sim P(y_2,f(y_1,y_2)),}_{(1)}, \underbrace{\sim P(f(y_1,y_2),f(y_1,y_2))}_{(2)}, Q(y_1,y_2)\} \\
+    & C_3 : && \{\underbrace{\sim P(y_2, f(y_1,y_2))}_{(3)}, \underbrace{\sim P(f(y_1,y_2),f(y_1,y_2))}_{(4)},
+        \underbrace{\sim Q(y_1,f(y_1,y_2))}_{(5)}, \sim Q(f(y_1,y_2),f(y_1,y_2))\}
+\end{align*}
+\noindent
+and we obtain the set $S^\prime$ whose only members are:
+
+\begin{align*}
+    & C_4 : && \{Q(y_1,y_2)\} \\
+    & C_5 : && \{\sim Q(f(y_1, y_2), f(y_1, y_2))\}
+\end{align*}
+\noindent
+in six stages which may be followed through by deleting the underlined literals, and the underlined clause, in the order indicated. This gives the set of clauses at each stage. Deletions (1) through (5) are by virtue of the replacement principle; deletion (6), of the entire clause $C_1$, is by virtue of the purity principle. The set $S^\prime$ in turn is found immediately to be unsatisfiable, since $C_4$ and $C_5$ have $\square$ as their only resolvent.
+
+Gilmore's 704 program failed to converge after 21 minutes' running time, when given this example. The more efficient procedure of Davis and Putnam converges, for this example, in 30 minutes of hand computation.
+
+The application, to a finite set $S$ of clauses, of any of the three search principles we have described, produces a set $S^\prime$ which either has fewer clauses than $S$ or has the same number of clauses as $S$ but with one or more shorter clauses. An obvious method of exploiting these principles in a refutation procedure is therefore never to add new clauses, by the resolution principle, except to a set to which the three principles are no longer applicable. We might call such sets \emph{irreducible}. The way in which such a procedure would terminate, for satisfiable 
+$S$ within its range of convergence, would then be with a set, which is either empty (as in the Peano example) or nonempty, irreducible, and with the property that each resolvent of any pair of its clauses is subsumed by some one of its clauses. 
+
+There are further search principles of this same general sort, which are less simple than those discussed in this section. A sequel to the present paper is planned in which the theoretical framework developed here will be used as the basis for a more extensive treatment of search principles and of the design of refutation procedures. This section has been merely a sketch of the general nature of the problem, and a brief view of some of the approaches to if,.
+
+\emph{Acknowledgments}. I should like to express my indebtedness to my colleagues Dr. George A. Robinson and Dr. Lawrence T. Wos, of the Argonne National Laboratory, and to Professor William Davidon of Haverford College, for their
+
+\newpage
+
 TODO fix all set braces
 
 TODO REMOVE
